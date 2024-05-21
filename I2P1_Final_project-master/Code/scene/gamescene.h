@@ -7,6 +7,8 @@
 #include "../element/teleport.h"
 #include "../element/tree.h"
 #include "../element/projectile.h"
+#include "../element/tower.h"
+#include "../element/poft.h"
 /*
    [game scene object]
 */
@@ -16,7 +18,9 @@ typedef enum EleType
     Teleport_L,
     Tree_L,
     Character_L,
-    Projectile_L
+    Projectile_L,
+    Tower_L,
+    PofT_L,`
 }EleType;
 typedef struct _GameScene
 {
