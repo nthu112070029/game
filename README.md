@@ -1,3 +1,3 @@
 # game
 
-#test by bkg547
+test by bkg547
