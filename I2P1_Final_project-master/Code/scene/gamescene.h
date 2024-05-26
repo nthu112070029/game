@@ -21,7 +21,8 @@ typedef enum EleType
     Projectile_L,
     Tower_L,
     PofT_L,
-    Castle_L
+    Castle_L,
+    money_col_L
 }EleType;
 typedef struct _GameScene
 {
