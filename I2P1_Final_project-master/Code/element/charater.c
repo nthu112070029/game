@@ -67,6 +67,16 @@ void Character_update(Elements *const ele)
             chara->dir = true;
             chara->state = MOVE;
         }
+      else if (key_state[ALLEGRO_KEY_S])
+        {
+            chara->dir = false;
+            chara->state = MOVE;
+        }
+        else if (key_state[ALLEGRO_KEY_W])
+        {
+            chara->dir = true;
+            chara->state = MOVE;
+        }
         else
         {
             chara->state = STOP;
@@ -90,8 +100,24 @@ void Character_update(Elements *const ele)
             _Character_update_position(ele, 5, 0);
             chara->state = MOVE;
         }
-        if (chara->gif_status[chara->state]->done)
+        else if (key_state[ALLEGRO_KEY_W])
+        {
+            chara->dir = true;
+            _Character_update_position(ele, 0, -5);
+            chara->state = MOVE;
+        }
+        else if (key_state[ALLEGRO_KEY_S])
+        {
+            chara->dir = true;
+            _Character_update_position(ele, 0, 5);
+            chara->state = MOVE;
+        }
+        else
+        {
             chara->state = STOP;
+        }
+       /*if (chara->gif_status[chara->state]->done)
+            chara->state = STOP;*/ 
     }
     else if (chara->state == ATK)
     {
