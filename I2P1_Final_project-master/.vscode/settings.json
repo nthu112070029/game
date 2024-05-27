@@ -1,5 +1,10 @@
 {
 	"terminal.integrated.env.windows": {
 		"PATH": "${workspaceFolder}\\MinGW\\bin;${env:PATH}"
+	},
+	"files.associations": {
+		"castle.h": "c",
+		"money_col.h": "c",
+		"monster.h": "c"
 	}
 }
