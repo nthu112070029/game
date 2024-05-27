@@ -19,7 +19,7 @@ Elements *New_Tower(int label, int x, int y)
     for (int i = 0; i < 3; i++)
     {
         char buffer[50];
-        sprintf(buffer, "assets/image/chara_%s.gif", state_string[i]);
+        sprintf(buffer, "assets/image/tower_%s.gif", state_string[i]);
         pDerivedObj->gif_status[i] = algif_new_gif(buffer, -1);
     }
     // load effective sound
