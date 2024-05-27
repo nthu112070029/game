@@ -10,6 +10,7 @@
 #include "../element/tower.h"
 #include "../element/poft.h"
 #include "../element/ball.h"
+
 /*
    [game scene object]
 */
@@ -25,6 +26,8 @@ typedef enum EleType
     Castle_L,
     money_col_L,
     Ball_L,
+    camp_L,
+    
 }EleType;
 typedef struct _GameScene
 {
