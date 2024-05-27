@@ -8,7 +8,7 @@
 /*
    [Tower function]
 */
-Elements *New_Tower(int label)
+Elements *New_Tower(int label, int x, int y)
 {
     
     Tower *pDerivedObj = (Tower *)malloc(sizeof(Tower));
@@ -31,8 +31,8 @@ Elements *New_Tower(int label)
     // initial the geometric information of Tower
     pDerivedObj->width = pDerivedObj->gif_status[0]->width;
     pDerivedObj->height = pDerivedObj->gif_status[0]->height;
-    pDerivedObj->x = 300;
-    pDerivedObj->y = HEIGHT - pDerivedObj->height - 60;
+    pDerivedObj->x = x-(pDerivedObj->width)/2;
+    pDerivedObj->y = y-(pDerivedObj->height)/2;
     pDerivedObj->hitbox = New_Rectangle(pDerivedObj->x,
                                         pDerivedObj->y,
                                         pDerivedObj->x + pDerivedObj->width,

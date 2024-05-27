@@ -30,7 +30,7 @@ typedef struct _Tower
     bool new_proj;  //What is this line function?
     Shape *hitbox; // the hitbox of object
 } Tower;
-Elements *New_Tower(int label);
+Elements *New_Tower(int label, int x, int y);
 void _Tower_update_position(Elements *self, int dx, int dy);
 void Tower_update(Elements *self);
 void Tower_interact(Elements *self, Elements *target);

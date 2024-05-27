@@ -53,6 +53,7 @@ Elements *New_Ball(int label)
     pObj->Destroy = Ball_destory;
     return pObj;
 }
+int mouse_click_state = 0;
 void Ball_update(Elements *const ele)
 {
     Ball *Obj = ((Ball *)(ele->pDerivedObj));
@@ -62,13 +63,17 @@ void Ball_update(Elements *const ele)
     Obj->x = mouse.x;
     Obj->y = mouse.y;
     //for(int i = 0 ; i < 100 ; i++)
-    //{
-        if (mouse_state[1] == true) {
-            //printf("i is : %d\n", i);
-            _Register_elements(scene, New_Tower(Tower_L));
-            printf("Mouse button down at: (%d, %d)\n", event.mouse.x, event.mouse.y);
-        }
-    //}
+    if ((mouse_state[1] == true) && (mouse_click_state == 0))
+    {
+        //printf("i is : %d\n", i);
+        _Register_elements(scene, New_Tower(Tower_L, mouse.x, mouse.y));
+        printf("Mouse button down at: (%d, %d)\n", event.mouse.x, event.mouse.y);
+        mouse_click_state = 1;
+    }
+    if (mouse_state[1] == false) 
+    {
+        mouse_click_state = 0;
+    }
     
     //_Ball_update_position(ele, Obj->v, 0);
 }
@@ -80,10 +85,7 @@ void _Ball_update_position(Elements *const self, int dx, int dy)
     Shape *hitbox = Obj->hitbox;
     hitbox->update_center_x(hitbox, dx);
     hitbox->update_center_y(hitbox, dy);
-    if (event.type == ALLEGRO_EVENT_MOUSE_BUTTON_DOWN) {
-        _Register_elements(scene, New_Tower(Tower_L));
-        printf("Mouse button down at: (%d, %d)\n", event.mouse.x, event.mouse.y);
-    }
+    
 }
 void Ball_interact(Elements *const self_ele, Elements *const ele)
 {
