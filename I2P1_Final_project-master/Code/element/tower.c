@@ -8,7 +8,7 @@
 /*
    [Tower function]
 */
-Elements *New_Tower(int label)
+Elements *New_Tower(int label, int x, int y)
 {
     
     Tower *pDerivedObj = (Tower *)malloc(sizeof(Tower));
@@ -19,7 +19,7 @@ Elements *New_Tower(int label)
     for (int i = 0; i < 3; i++)
     {
         char buffer[50];
-        sprintf(buffer, "assets/image/chara_%s.gif", state_string[i]);
+        sprintf(buffer, "assets/image/tower_%s.gif", state_string[i]);
         pDerivedObj->gif_status[i] = algif_new_gif(buffer, -1);
     }
     // load effective sound
@@ -31,8 +31,8 @@ Elements *New_Tower(int label)
     // initial the geometric information of Tower
     pDerivedObj->width = pDerivedObj->gif_status[0]->width;
     pDerivedObj->height = pDerivedObj->gif_status[0]->height;
-    pDerivedObj->x = 300;
-    pDerivedObj->y = HEIGHT - pDerivedObj->height - 60;
+    pDerivedObj->x = x-(pDerivedObj->width)/2;
+    pDerivedObj->y = y-(pDerivedObj->height)/2;
     pDerivedObj->hitbox = New_Rectangle(pDerivedObj->x,
                                         pDerivedObj->y,
                                         pDerivedObj->x + pDerivedObj->width,
@@ -47,7 +47,6 @@ Elements *New_Tower(int label)
     pObj->Update = Tower_update;
     pObj->Interact = Tower_interact;
     pObj->Destroy = Tower_destory;
-    printf("123");
     return pObj;
 }
 void Tower_update(Elements *self)
@@ -106,7 +105,6 @@ void Tower_update(Elements *self)
         if (chara->gif_status[T_ATK]->display_index == 2 && chara->new_proj == false)
         {
             Elements *pro;
-            printf("!");
             pro = New_PofT(PofT_L,
                             chara->x + chara->width - 100,
                             chara->y + 10,

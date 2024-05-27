@@ -27,10 +27,10 @@ typedef struct _Tower
     ALLEGRO_SAMPLE_INSTANCE *atk_Sound;
     int anime;      // counting the time of animation
     int anime_time; // indicate how long the animation
-    bool new_proj;
+    bool new_proj;  //What is this line function?
     Shape *hitbox; // the hitbox of object
 } Tower;
-Elements *New_Tower(int label);
+Elements *New_Tower(int label, int x, int y);
 void _Tower_update_position(Elements *self, int dx, int dy);
 void Tower_update(Elements *self);
 void Tower_interact(Elements *self, Elements *target);
