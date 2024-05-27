@@ -9,6 +9,7 @@
 #include "../element/projectile.h"
 #include "../element/tower.h"
 #include "../element/poft.h"
+#include "../element/ball.h"
 /*
    [game scene object]
 */
@@ -21,6 +22,7 @@ typedef enum EleType
     Projectile_L,
     Tower_L,
     PofT_L,
+    Ball_L,
 }EleType;
 typedef struct _GameScene
 {

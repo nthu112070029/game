@@ -47,7 +47,6 @@ Elements *New_Tower(int label)
     pObj->Update = Tower_update;
     pObj->Interact = Tower_interact;
     pObj->Destroy = Tower_destory;
-    printf("123");
     return pObj;
 }
 void Tower_update(Elements *self)
@@ -106,7 +105,6 @@ void Tower_update(Elements *self)
         if (chara->gif_status[T_ATK]->display_index == 2 && chara->new_proj == false)
         {
             Elements *pro;
-            printf("!");
             pro = New_PofT(PofT_L,
                             chara->x + chara->width - 100,
                             chara->y + 10,
