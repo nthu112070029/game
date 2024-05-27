@@ -53,6 +53,7 @@ void Tower_update(Elements *self)
 {
     // use the idea of finite state machine to deal with different state
     Tower *chara = ((Tower *)(self->pDerivedObj));
+    //這裡的chara我沒有改到，不知道是不是這裡有問題
     if (chara->state == T_STOP)
     {
         if (key_state[ALLEGRO_KEY_SPACE])
