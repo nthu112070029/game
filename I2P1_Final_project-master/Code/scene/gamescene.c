@@ -1,4 +1,6 @@
 #include "gamescene.h"
+#include "../element/castle.h"
+#include "../element/money_col.h"
 /*
    [GameScene function]
 */
@@ -7,7 +9,7 @@ Scene *New_GameScene(int label)
     GameScene *pDerivedObj = (GameScene *)malloc(sizeof(GameScene));
     Scene *pObj = New_Scene(label);
     // setting derived object member
-    pDerivedObj->background = al_load_bitmap("assets/image/stage.jpg");
+    pDerivedObj->background = al_load_bitmap("assets/image/stage.png");
     pObj->pDerivedObj = pDerivedObj;
     
     // register element
@@ -15,9 +17,15 @@ Scene *New_GameScene(int label)
     _Register_elements(pObj, New_Teleport(Teleport_L));
     _Register_elements(pObj, New_Tree(Tree_L));
     _Register_elements(pObj, New_Character(Character_L));
+<<<<<<< HEAD
     //_Register_elements(pObj, New_Tower(Tower_L));
     _Register_elements(pObj, New_Ball(Ball_L));
 
+=======
+    _Register_elements(pObj, New_Tower(Tower_L));
+    _Register_elements(pObj, New_castle(Castle_L));
+    _Register_elements(pObj, New_money_col(money_col_L));
+>>>>>>> 59fd55c1d0b5374c27ebe1e10bb1e014a54461e0
     // setting derived object function
     pObj->Update = game_scene_update;
     pObj->Draw = game_scene_draw;
