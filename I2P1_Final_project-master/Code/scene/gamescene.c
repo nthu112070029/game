@@ -22,7 +22,6 @@ Scene *New_GameScene(int label)
     _Register_elements(pObj, New_Character(Character_L));
     //_Register_elements(pObj, New_Tower(Tower_L));
     _Register_elements(pObj, New_Ball(Ball_L));
-    _Register_elements(pObj, New_Tower(Tower_L));
     _Register_elements(pObj, New_castle(Castle_L));
     _Register_elements(pObj, New_money_col(money_col_L));  
     _Register_elements(pObj, New_camp(camp_L));
