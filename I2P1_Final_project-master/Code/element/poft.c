@@ -47,14 +47,14 @@ void _PofT_update_position(Elements *self, int dx, int dy)
 void PofT_interact(Elements *self, Elements *tar)
 {
     PofT *Obj = ((PofT *)(self->pDerivedObj));
-    if (Obj->x < 0 - Obj->width)
-            self->dele = true;
-        else if (Obj->y < 0 - Obj->height)
-            self->dele = true;
-        else if (Obj->x > WIDTH + Obj->width)
-            self->dele = true;
-        else if (Obj->x > HEIGHT + Obj->height)
-            self->dele = true;
+    if (Obj->x < 0 - Obj->width)//讓碰到邊緣讓砲彈消失的條件
+        self->dele = true;
+    else if (Obj->y < 0 - Obj->height)
+        self->dele = true;
+    else if (Obj->x > WIDTH + Obj->width)
+        self->dele = true;
+    else if (Obj->x > HEIGHT + Obj->height)
+        self->dele = true;
     /*
     if (tar->label == Floor_L)
     {

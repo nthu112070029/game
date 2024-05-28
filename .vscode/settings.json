@@ -8,6 +8,7 @@
         "gamewindow.h": "c",
         "shape.h": "c",
         "random": "c",
-        "allegro.h": "c"
+        "allegro.h": "c",
+        "point.h": "c"
     }
 }
