@@ -22,12 +22,12 @@ typedef enum EleType
     camp_L,
     Character_L,
     Projectile_L,
-    Tower_L,
     PofT_L,
+    Tower_L,
     Castle_L,
     money_col_L,
     Ball_L,
-     Monster_L,
+    Monster_L,
 
     
 }EleType;

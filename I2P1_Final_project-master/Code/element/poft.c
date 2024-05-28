@@ -20,7 +20,7 @@ Elements *New_PofT(int label, int x, int y, int vx, int vy)
                                      min(pDerivedObj->width, pDerivedObj->height) / 2);
     // setting the interact object
     //pObj->inter_obj[pObj->inter_len++] = Tree_L;
-    //pObj->inter_obj[pObj->inter_len++] = Floor_L;
+    pObj->inter_obj[pObj->inter_len++] = Monster_L;
     // setting derived object function
     pObj->pDerivedObj = pDerivedObj;
     pObj->Update = PofT_update;
@@ -46,6 +46,7 @@ void _PofT_update_position(Elements *self, int dx, int dy)
 }
 void PofT_interact(Elements *self, Elements *tar)
 {
+    //printf( "PofT_interact" );
     PofT *Obj = ((PofT *)(self->pDerivedObj));
     if (Obj->x < 0 - Obj->width)//讓碰到邊緣讓砲彈消失的條件
         self->dele = true;

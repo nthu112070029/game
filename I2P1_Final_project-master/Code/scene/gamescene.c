@@ -33,14 +33,26 @@ Scene *New_GameScene(int label)
     pObj->Destroy = game_scene_destroy;
     return pObj;
 }
+
+int time_of_projit = 0;
 void game_scene_update(Scene *const pGameSceneObj)
 {
+    time_of_projit = (time_of_projit+1)%60;
     // update every element
     ElementVec allEle = _Get_all_elements(pGameSceneObj);
+    int tower_num= 0;
     for (int i = 0; i < allEle.len; i++)
     {
+       
+        if((allEle.arr[i]->label) != 6) {
+            //tower_num++;
+            //printf( "i: %d ", i );
+        }
+        printf("tower%d\n", tower_num );
+
         allEle.arr[i]->Update(allEle.arr[i]);
     }
+
 
     // run interact for every element
     for (int i = 0; i < allEle.len; i++)
@@ -51,6 +63,7 @@ void game_scene_update(Scene *const pGameSceneObj)
         {
             int inter_label = ele->inter_obj[j];
             ElementVec labelEle = _Get_label_elements(pGameSceneObj, inter_label);
+            //printf( "labal:%d\n", labelEle.len );
             for (int i = 0; i < labelEle.len; i++)
             {
                 ele->Interact(ele, labelEle.arr[i]);

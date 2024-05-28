@@ -9,6 +9,9 @@
         "shape.h": "c",
         "random": "c",
         "allegro.h": "c",
-        "point.h": "c"
+        "point.h": "c",
+        "scenemanager.h": "c",
+        "scene.h": "c",
+        "element.h": "c"
     }
 }
