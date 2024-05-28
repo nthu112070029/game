@@ -2,6 +2,7 @@
 #include "../element/castle.h"
 #include "../element/money_col.h"
 #include "../element/camp.h"
+#include "../element/monster.h"
 
 
 /*
@@ -25,6 +26,7 @@ Scene *New_GameScene(int label)
     _Register_elements(pObj, New_castle(Castle_L));
     _Register_elements(pObj, New_money_col(money_col_L));  
     _Register_elements(pObj, New_camp(camp_L));
+     _Register_elements(pObj, New_Monster(Monster_L));
     // setting derived object function
     pObj->Update = game_scene_update;
     pObj->Draw = game_scene_draw;

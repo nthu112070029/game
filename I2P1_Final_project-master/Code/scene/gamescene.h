@@ -27,6 +27,8 @@ typedef enum EleType
     Castle_L,
     money_col_L,
     Ball_L,
+     Monster_L,
+
     
 }EleType;
 typedef struct _GameScene

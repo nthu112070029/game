@@ -17,7 +17,7 @@ Elements *New_Monster(int label)
     
 
     // initial the geometric information of monster
-    pDerivedObj->img = al_load_bitmap("assets/image/monster_move.png");
+    pDerivedObj->img = al_load_bitmap("assets/image/monster_Move.png");
     pDerivedObj->width =al_get_bitmap_width(pDerivedObj->img);
     pDerivedObj->height = al_get_bitmap_height(pDerivedObj->img);
     pDerivedObj->x = 0;
@@ -28,7 +28,7 @@ Elements *New_Monster(int label)
                                         pDerivedObj->y + pDerivedObj->height);
    
     // initial the animation component
-    pDerivedObj->state = MOVE;
+    pDerivedObj->state = Run;
     pObj->pDerivedObj = pDerivedObj;
     // setting derived object function
     pObj->Draw = monster_draw;
@@ -41,12 +41,12 @@ Elements *New_Monster(int label)
 void monster_update(Elements *const ele)
 {
     // use the idea of finite state machine to deal with different state
-    monster *chara = ((monster *)(ele->pDerivedObj));
+   monster *chara = ((monster *)(ele->pDerivedObj));
     if (chara-> state == BATK)
     {
         
     }
-    else if (chara->state == MOVE)
+    else if (chara->state == Run)
     {
         if(chara->x <200 && chara->y==100)
         {
