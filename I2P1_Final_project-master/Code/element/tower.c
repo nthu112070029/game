@@ -5,6 +5,8 @@
 #include "../algif5/src/algif.h"
 #include <stdio.h>
 #include <stdbool.h>
+
+int index_of_projit = 0;
 /*
    [Tower function]
 */
@@ -51,8 +53,40 @@ Elements *New_Tower(int label, int x, int y)
 }
 void Tower_update(Elements *self)
 {
+    index_of_projit++;
+    
+
     // use the idea of finite state machine to deal with different state
     Tower *chara = ((Tower *)(self->pDerivedObj));
+
+    if (index_of_projit == 60)
+        //(chara->gif_status[T_ATK]->display_index == 2 && chara->new_proj == false)
+        {
+            Elements *pro;
+            pro = New_PofT(PofT_L,
+                            chara->x + chara->width/2-5,
+                            chara->y + chara->height/2-5,
+                            5, 5);
+            _Register_elements(scene, pro);
+            pro = New_PofT(PofT_L,
+                            chara->x + chara->width/2-5,
+                            chara->y + chara->height/2-5,
+                            5, -5);
+            _Register_elements(scene, pro);
+            pro = New_PofT(PofT_L,
+                            chara->x + chara->width/2-5,
+                            chara->y + chara->height/2-5,
+                            -5, 5);
+            _Register_elements(scene, pro);
+            pro = New_PofT(PofT_L,
+                            chara->x + chara->width/2-5,
+                            chara->y + chara->height/2-5,
+                            -5, -5);
+            _Register_elements(scene, pro);
+            chara->new_proj = true;
+            index_of_projit = 0;
+        }
+
     //這裡的chara我沒有改到，不知道是不是這裡有問題
     if (chara->state == T_STOP)
     {
@@ -103,7 +137,9 @@ void Tower_update(Elements *self)
             chara->state = T_STOP;
             chara->new_proj = false;
         }
-        if (chara->gif_status[T_ATK]->display_index == 2 && chara->new_proj == false)
+        /*
+        if (index_of_projit == 60)
+        //(chara->gif_status[T_ATK]->display_index == 2 && chara->new_proj == false)
         {
             Elements *pro;
             pro = New_PofT(PofT_L,
@@ -127,7 +163,9 @@ void Tower_update(Elements *self)
                             -5, -5);
             _Register_elements(scene, pro);
             chara->new_proj = true;
+            index_of_projit = 0;
         }
+        */
     }
 }
 void Tower_draw(Elements *self)

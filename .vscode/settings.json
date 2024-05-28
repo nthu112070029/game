@@ -6,6 +6,8 @@
         "allegro_image.h": "c",
         "allegro_font.h": "c",
         "gamewindow.h": "c",
-        "shape.h": "c"
+        "shape.h": "c",
+        "random": "c",
+        "allegro.h": "c"
     }
 }
