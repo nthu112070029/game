@@ -1,8 +1,7 @@
 #include "monster.h"
-
 #include "../shapes/Rectangle.h"
-
 #include <stdio.h>
+
 /*
    [monster function]
 */
@@ -30,6 +29,9 @@ Elements *New_Monster(int label)
     // initial the animation component
     pDerivedObj->state = Run;
     pObj->pDerivedObj = pDerivedObj;
+    //interact obj
+    pObj->inter_obj[pObj->inter_len++] = Floor_L;
+    pObj->inter_obj[pObj->inter_len++] = PofT_L;
     // setting derived object function
     pObj->Draw = monster_draw;
     pObj->Update = monster_update;
@@ -41,7 +43,7 @@ Elements *New_Monster(int label)
 void monster_update(Elements *const ele)
 {
     // use the idea of finite state machine to deal with different state
-   monster *chara = ((monster *)(ele->pDerivedObj));
+    monster *chara = ((monster *)(ele->pDerivedObj));
     if (chara-> state == BATK)
     {
         
@@ -101,4 +103,22 @@ void _monster_update_position(Elements *const ele, int dx, int dy)
     hitbox->update_center_y(hitbox, dy);
 }
 
-void monster_interact(Elements *const self, Elements *const target) {}
+void monster_interact(Elements *const self, Elements *const target) {
+
+    monster *Obj = ((monster *)(self->pDerivedObj));
+    if (target->label == Floor_L)
+    {
+        if (Obj->x < 0 - Obj->width)
+            self->dele = true;
+        else if (Obj->x > WIDTH + Obj->width)
+            self->dele = true;
+    }
+    else if (target->label == PofT_L)
+    {
+        PofT *poft = ((PofT *)(target->pDerivedObj));
+        if (poft->hitbox->overlap(poft->hitbox, Obj->hitbox))
+        {
+            self->dele = true;
+        }
+    }
+}

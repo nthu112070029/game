@@ -1,8 +1,10 @@
 #include "gamescene.h"
-#include "../element/castle.h"
-#include "../element/money_col.h"
-#include "../element/camp.h"
-#include "../element/monster.h"
+// #include "../element/castle.h"
+// #include "../element/money_col.h"
+// #include "../element/camp.h"
+// #include "../element/monster.h"
+// 註冊在gamescene.h
+#include "../scene/sceneManager.h"
 
 
 /*
@@ -34,25 +36,33 @@ Scene *New_GameScene(int label)
     return pObj;
 }
 
-int time_of_projit = 0;
+int timer = 0;
+int counter_of_monster = 0;
 void game_scene_update(Scene *const pGameSceneObj)
 {
-    time_of_projit = (time_of_projit+1)%60;
+    timer++;
+
+    //create monster
+    if (!(timer%600))
+    {
+        counter_of_monster = timer/60;
+    }
+    if (!(timer%60))
+    {
+        counter_of_monster--;
+        if(counter_of_monster > 0)
+        {
+            _Register_elements(scene, New_Monster(Monster_L));
+        }
+    }
+    //printf("%d\n", timer);
+
     // update every element
     ElementVec allEle = _Get_all_elements(pGameSceneObj);
-    int tower_num= 0;
     for (int i = 0; i < allEle.len; i++)
     {
-       
-        if((allEle.arr[i]->label) != 6) {
-            //tower_num++;
-            //printf( "i: %d ", i );
-        }
-        printf("tower%d\n", tower_num );
-
         allEle.arr[i]->Update(allEle.arr[i]);
     }
-
 
     // run interact for every element
     for (int i = 0; i < allEle.len; i++)

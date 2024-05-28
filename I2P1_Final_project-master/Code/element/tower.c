@@ -1,12 +1,13 @@
 #include "tower.h"
 #include "../scene/sceneManager.h"
 #include "poft.h"
+#include "monster.h"
 #include "../shapes/Rectangle.h"
 #include "../algif5/src/algif.h"
 #include <stdio.h>
 #include <stdbool.h>
 
-extern int time_of_projit;
+extern int timer;
 
 int index_of_projit = 0;
 /*
@@ -53,43 +54,38 @@ Elements *New_Tower(int label, int x, int y)
     pObj->Destroy = Tower_destory;
     return pObj;
 }
+
 void Tower_update(Elements *self)
 {
-    
-    
-
     // use the idea of finite state machine to deal with different state
     Tower *chara = ((Tower *)(self->pDerivedObj));
+    if (!(timer%60))//(chara->gif_status[T_ATK]->display_index == 2 && chara->new_proj == false)
+    {           
+        //create projectile of tower
+        Elements *pro;
+        pro = New_PofT(PofT_L,
+                        chara->x + ( chara->width ) /2-5,
+                        chara->y + ( chara->height ) /2-5,
+                        5, 5);
+        _Register_elements(scene, pro);
+        pro = New_PofT(PofT_L,
+                        chara->x + ( chara->width ) /2-5,
+                        chara->y + ( chara->height ) /2-5,
+                        5, -5);
+        _Register_elements(scene, pro);
+        pro = New_PofT(PofT_L,
+                        chara->x + ( chara->width ) /2-5,
+                        chara->y + ( chara->height ) /2-5,
+                        -5, 5);
+        _Register_elements(scene, pro);
+        pro = New_PofT(PofT_L,
+                        chara->x + ( chara->width ) /2-5,
+                        chara->y + ( chara->height ) /2-5,
+                        -5, -5);
+        _Register_elements(scene, pro);
+        chara->new_proj = true;
+    }
 
-    if (time_of_projit == 59)
-        //(chara->gif_status[T_ATK]->display_index == 2 && chara->new_proj == false)
-        {
-            printf( "x:%d y:%d\n", chara->x, chara->y );
-            Elements *pro;
-            pro = New_PofT(PofT_L,
-                            chara->x + ( chara->width ) /2-5,
-                            chara->y + ( chara->height ) /2-5,
-                            5, 5);
-            _Register_elements(scene, pro);
-            pro = New_PofT(PofT_L,
-                            chara->x + ( chara->width ) /2-5,
-                            chara->y + ( chara->height ) /2-5,
-                            5, -5);
-            _Register_elements(scene, pro);
-            pro = New_PofT(PofT_L,
-                            chara->x + ( chara->width ) /2-5,
-                            chara->y + ( chara->height ) /2-5,
-                            -5, 5);
-            _Register_elements(scene, pro);
-            pro = New_PofT(PofT_L,
-                            chara->x + ( chara->width ) /2-5,
-                            chara->y + ( chara->height ) /2-5,
-                            -5, -5);
-            _Register_elements(scene, pro);
-            chara->new_proj = true;
-        }
-
-    //這裡的chara我沒有改到，不知道是不是這裡有問題
     if (chara->state == T_STOP)
     {
         if (key_state[ALLEGRO_KEY_SPACE])
