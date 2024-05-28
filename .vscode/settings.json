@@ -13,6 +13,9 @@
         "scenemanager.h": "c",
         "scene.h": "c",
         "element.h": "c",
-        "poft.h": "c"
+        "poft.h": "c",
+        "global.h": "c",
+        "stdio.h": "c",
+        "gamescene.h": "c"
     }
 }

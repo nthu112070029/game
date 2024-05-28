@@ -7,7 +7,7 @@
 */
 Elements *New_Monster(int label)
 {
-    monster *pDerivedObj = (monster *)malloc(sizeof(monster));
+    Monster *pDerivedObj = (Monster *)malloc(sizeof(Monster));
     Elements *pObj = New_Elements(label);
     // setting derived object member
     // load monster images
@@ -43,7 +43,7 @@ Elements *New_Monster(int label)
 void monster_update(Elements *const ele)
 {
     // use the idea of finite state machine to deal with different state
-    monster *chara = ((monster *)(ele->pDerivedObj));
+    Monster *chara = ((Monster *)(ele->pDerivedObj));
     if (chara-> state == BATK)
     {
         
@@ -81,12 +81,12 @@ void monster_update(Elements *const ele)
 void monster_draw(Elements *const ele)
 {
     // with the state, draw corresponding image
-    monster *Obj = ((monster *)(ele->pDerivedObj));
+    Monster *Obj = ((Monster *)(ele->pDerivedObj));
    al_draw_bitmap(Obj->img, Obj->x, Obj->y, 0);
 }
 void monster_destory(Elements *const ele)
 {
-    monster *Obj = ((monster *)(ele->pDerivedObj));
+    Monster *Obj = ((Monster *)(ele->pDerivedObj));
      al_destroy_bitmap(Obj->img);
     free(Obj->hitbox);
     free(Obj);
@@ -95,7 +95,7 @@ void monster_destory(Elements *const ele)
 
 void _monster_update_position(Elements *const ele, int dx, int dy)
 {
-    monster *chara = ((monster *)(ele->pDerivedObj));
+    Monster *chara = ((Monster *)(ele->pDerivedObj));
     chara->x += dx;
     chara->y += dy;
     Shape *hitbox = chara->hitbox;
@@ -105,7 +105,7 @@ void _monster_update_position(Elements *const ele, int dx, int dy)
 
 void monster_interact(Elements *const self, Elements *const target) {
 
-    monster *Obj = ((monster *)(self->pDerivedObj));
+    Monster *Obj = ((Monster *)(self->pDerivedObj));
     if (target->label == Floor_L)
     {
         if (Obj->x < 0 - Obj->width)
