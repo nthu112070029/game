@@ -6,13 +6,13 @@
 /*
    [castle object]
 */
-typedef struct _castle
+typedef struct _Castle
 {
     int x, y;          // the position of image
     int width, height; // the width and height of image
     ALLEGRO_BITMAP *img;
     Shape *hitbox; // the hitbox of object
-} castle;
+} Castle;
 Elements *New_castle(int label);
 void castle_update(Elements *const ele);
 void castle_interact(Elements *const, Elements *const);

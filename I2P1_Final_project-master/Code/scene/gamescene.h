@@ -23,16 +23,15 @@ typedef enum EleType
     Floor_L,
     Teleport_L,
     Tree_L,
+    Monster_L,
     camp_L,
     Character_L,
     Projectile_L,
     PofT_L,
-    Tower_L,
+    Tower_L,//must below PofT_L
     Castle_L,
     money_col_L,
     Ball_L,
-    Monster_L,
-
     
 }EleType;
 typedef struct _GameScene

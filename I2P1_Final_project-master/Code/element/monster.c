@@ -118,7 +118,7 @@ void monster_interact(Elements *const self, Elements *const target) {
         PofT *poft = ((PofT *)(target->pDerivedObj));
         if (poft->hitbox->overlap(poft->hitbox, Obj->hitbox))
         {
-            self->dele = true;
+            self->dele = true;            
         }
     }
 }
