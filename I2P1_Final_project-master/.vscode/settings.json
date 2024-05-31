@@ -5,6 +5,9 @@
 	"files.associations": {
 		"castle.h": "c",
 		"money_col.h": "c",
-		"monster.h": "c"
+		"monster.h": "c",
+		"allegro_audio.h": "c",
+		"allegro_acodec.h": "c",
+		"allegro_ttf.h": "c"
 	}
 }
