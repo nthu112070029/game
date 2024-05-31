@@ -40,9 +40,8 @@ void castle_interact(Elements *const self_ele, Elements *const ele) {
 
         if (monster->hitbox->overlap(monster->hitbox, Obj->hitbox))
         {
-            
             self_ele->dele = true;//let you know it works
-            //here, you can add change scene code
+            window = 0;//here, you can add change scene code
         }
     }
 }

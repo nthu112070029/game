@@ -1,16 +1,17 @@
 #include <allegro5/allegro_primitives.h>
-#include "menu.h"
+#include "Lose.h"
 /*
-   [Menu function]
+   [Lose function]
 */
-Scene *New_Menu(int label)
+Scene *New_Lose(int label)
 {
-    Menu *pDerivedObj = (Menu *)malloc(sizeof(Menu));
+    Lose *pDerivedObj = (Lose *)malloc(sizeof(Lose));
     Scene *pObj = New_Scene(label);
     // setting derived object member
+    printf("1\n");
     pDerivedObj->font = al_load_ttf_font("assets/font/pirulen.ttf", 12, 0);
     // Load sound
-    pDerivedObj->song = al_load_sample("assets/sound/menu.mp3");
+    pDerivedObj->song = al_load_sample("assets/sound/Lose.mp3");
     al_reserve_samples(20);
     pDerivedObj->sample_instance = al_create_sample_instance(pDerivedObj->song);
     pDerivedObj->title_x = WIDTH / 2;
@@ -23,36 +24,29 @@ Scene *New_Menu(int label)
     al_set_sample_instance_gain(pDerivedObj->sample_instance, 0.1);
     pObj->pDerivedObj = pDerivedObj;
     // setting derived object function
-    pObj->Update = menu_update;
-    pObj->Draw = menu_draw;
-    pObj->Destroy = menu_destroy;
+    pObj->Update = Lose_update;
+    pObj->Draw = Lose_draw;
+    pObj->Destroy = Lose_destroy;
     return pObj;
 }
-void menu_update(Scene *const pMenuObj)
+void Lose_update(Scene *const pLoseObj)
 {
-    if (key_state[ALLEGRO_KEY_ENTER])
-    {
-        pMenuObj->scene_end = true;
-      
-        window = 1;
-        
-    }
    
-    return;
 }
-void menu_draw(Scene *const pMenuObj)
+void Lose_draw(Scene *const pLoseObj)
 {
-    Menu *Obj = ((Menu *)(pMenuObj->pDerivedObj));
-    al_draw_text(Obj->font, al_map_rgb(255, 255, 255), Obj->title_x, Obj->title_y, ALLEGRO_ALIGN_CENTRE, "Press 'Enter' to start");
+     
+    Lose *Obj = ((Lose *)(pLoseObj->pDerivedObj));
+    al_draw_text(Obj->font, al_map_rgb(255, 255, 255), Obj->title_x, Obj->title_y, ALLEGRO_ALIGN_CENTRE, "YOU LOSE");
     al_draw_rectangle(Obj->title_x - 150, Obj->title_y - 30, Obj->title_x + 150, Obj->title_y + 30, al_map_rgb(255, 255, 255), 0);
     al_play_sample_instance(Obj->sample_instance);
 }
-void menu_destroy(Scene *const pMenuObj)
+void Lose_destroy(Scene *const pLoseObj)
 {
-    Menu *Obj = ((Menu *)(pMenuObj->pDerivedObj));
+    Lose *Obj = ((Lose *)(pLoseObj->pDerivedObj));
     al_destroy_font(Obj->font);
     al_destroy_sample(Obj->song);
     al_destroy_sample_instance(Obj->sample_instance);
     free(Obj);
-    free(pMenuObj);
+    free(pLoseObj);
 }

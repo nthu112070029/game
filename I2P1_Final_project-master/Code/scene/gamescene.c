@@ -1,5 +1,5 @@
 #include "gamescene.h"
-// #include "../element/castle.h"
+//#include "../element/castle.h"
 // #include "../element/money_col.h"
 // #include "../element/camp.h"
 // #include "../element/monster.h"
@@ -88,6 +88,12 @@ void game_scene_update(Scene *const pGameSceneObj)
         Elements *ele = allEle.arr[i];
         if (ele->dele)
             _Remove_elements(pGameSceneObj, ele);
+    }
+    if(window>1)
+    {
+        pGameSceneObj->scene_end = true;
+       printf("gamescence\n");
+       
     }
 }
 void game_scene_draw(Scene *const pGameSceneObj)
