@@ -38,4 +38,6 @@ void Ball_interact(Elements *const self, Elements *const target);
 void Ball_draw(Elements *const self);
 void Ball_destory(Elements *const self);
 
+extern bool camp_BallHit;
+
 #endif

@@ -5,7 +5,7 @@
 // #include "../element/monster.h"
 // 註冊在gamescene.h
 #include "../scene/sceneManager.h"
-
+void New_camp_use_map(Scene *const);
 
 /*
    [GameScene function]
@@ -24,9 +24,11 @@ Scene *New_GameScene(int label)
     _Register_elements(pObj, New_Ball(Ball_L));
     _Register_elements(pObj, New_castle(Castle_L));
     _Register_elements(pObj, New_money_col(money_col_L));  
-    _Register_elements(pObj, New_camp(camp_L));
+    //_Register_elements(pObj, New_camp(camp_L));
     _Register_elements(pObj, New_Monster(Monster_L));
     
+    New_camp_use_map(pObj);
+
     // setting derived object function
     pObj->Update = game_scene_update;
     pObj->Draw = game_scene_draw;
@@ -75,6 +77,8 @@ void game_scene_update(Scene *const pGameSceneObj)
             for (int i = 0; i < labelEle.len; i++)
             {
                 ele->Interact(ele, labelEle.arr[i]);
+                if(ele->label == Character_L && campID_CharacterHit != -1) break;
+                if(ele->label == Ball_L && camp_BallHit) break;
             }
         }
     }
@@ -111,4 +115,33 @@ void game_scene_destroy(Scene *const pGameSceneObj)
     }
     free(Obj);
     free(pGameSceneObj);
+}
+
+void New_camp_use_map(Scene *const scene)
+{
+    int map_data[14][20];
+    FILE *data;
+
+    data = fopen("assets/map/camp.txt", "r");
+    for (int i = 0; i < 14; i++)
+    {
+        for (int j = 0; j < 20; j++)
+        {
+            fscanf(data, "%d", &map_data[i][j]);
+        }
+    }
+    fclose(data);
+
+    Elements *cam;
+    for (int i = 0; i < 14; i++)
+    {
+        for (int j = 0; j < 20; j++)
+        {
+            if (map_data[i][j])
+            {
+              cam = New_camp(camp_L,j,i);
+              _Register_elements(scene, cam);
+            }
+        }
+    }
 }

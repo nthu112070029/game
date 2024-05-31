@@ -5,7 +5,7 @@
 /*
    [camp function]
 */
-Elements *New_camp(int label)
+Elements *New_camp(int label, int i, int j)
 {
     camp *pDerivedObj = (camp *)malloc(sizeof(camp));
     Elements *pObj = New_Elements(label);
@@ -13,15 +13,14 @@ Elements *New_camp(int label)
     pDerivedObj->img = al_load_bitmap("assets/image/camp.png");
     pDerivedObj->width = al_get_bitmap_width(pDerivedObj->img);
     pDerivedObj->height = al_get_bitmap_height(pDerivedObj->img);
-    _camp_load_map(pDerivedObj);
-    pDerivedObj->x = 0;
-    pDerivedObj->y = 0;
-        pDerivedObj->hitbox = New_Rectangle(pDerivedObj->x,
+    //_camp_load_map(pDerivedObj); need to change
+    pDerivedObj->x = i * pDerivedObj->width;
+    pDerivedObj->y = j * pDerivedObj->height;
+    pDerivedObj->hitbox = New_Rectangle(pDerivedObj->x,
                                         pDerivedObj->y,
                                         pDerivedObj->x + pDerivedObj->width,
                                         pDerivedObj->y + pDerivedObj->height);
-    // setting the interact object
-    pObj->inter_obj[pObj->inter_len++] = Character_L;
+
     // setting derived object function
     pObj->pDerivedObj = pDerivedObj;
     pObj->Draw = camp_draw;
@@ -30,6 +29,7 @@ Elements *New_camp(int label)
     pObj->Destroy = camp_destory;
     return pObj;
 }
+/*
 void _camp_load_map(camp *const camp)
 {
     FILE *data;
@@ -43,6 +43,7 @@ void _camp_load_map(camp *const camp)
     }
     fclose(data);
 }
+*/
 void camp_update(Elements *const ele)
 {
     return;
@@ -61,16 +62,7 @@ void camp_interact(Elements *const self_ele, Elements *const ele)
 void camp_draw(Elements *const ele)
 {
     camp *Obj = ((camp *)(ele->pDerivedObj));
-    for (int i = 0; i < 14; i++)
-    {
-        for (int j = 0; j < 20; j++)
-        {
-            if (Obj->map_data[i][j])
-            {
-                al_draw_bitmap(Obj->img, Obj->x + j * Obj->width, Obj->y + i * Obj->height, 0);
-            }
-        }
-    }
+    al_draw_bitmap(Obj->img, Obj->x, Obj->y, 0);
 }
 void camp_destory(Elements *const ele)
 {

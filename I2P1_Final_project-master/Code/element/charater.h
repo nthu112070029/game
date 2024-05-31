@@ -36,4 +36,6 @@ void Character_interact(Elements *const self, Elements *const target);
 void Character_draw(Elements *const self);
 void Character_destory(Elements *const self);
 
+extern int campID_CharacterHit;
+
 #endif

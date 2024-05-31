@@ -68,7 +68,7 @@ void Ball_update(Elements *const ele)
     hitbox->update_center_y(hitbox, mouse.y - Obj->y);
     Obj->x = mouse.x;
     Obj->y = mouse.y;
-    if ((mouse_state[1] == true) && (mouse_click_state == 0))
+    if ((mouse_state[1] == true) && (mouse_click_state == 0)  && camp_BallHit)
     {
         _Register_elements(scene, New_Tower(Tower_L, campCenterX_Hit, campCenterY_Hit));
         mouse_click_state = 1;
@@ -99,7 +99,7 @@ void Ball_interact(Elements *const self_ele, Elements *const ele)
     {
         
         camp *camp1 = ((camp *)(ele->pDerivedObj));
-        if(camp1->hitbox->overlap(camp1->hitbox, Obj->hitbox))
+        if(camp1->hitbox->overlap(camp1->hitbox, Obj->hitbox) && campID_CharacterHit == ele->id)
         {
             Obj->color = al_map_rgb(0, 255, 0);
             camp_BallHit = true;

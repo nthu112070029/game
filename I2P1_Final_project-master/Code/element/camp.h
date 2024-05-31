@@ -11,12 +11,11 @@ typedef struct _camp
     int x, y;          // the position of image
     int width, height; // the width and height of image
     ALLEGRO_BITMAP *img;
-    int map_data[14][20];
     Shape *hitbox;
 } camp;
 
-Elements *New_camp(int label);
-void _camp_load_map(camp *const camp);
+Elements *New_camp(int label, int i, int j);
+//void _camp_load_map(camp *const camp);
 void camp_update(Elements *const ele);
 void camp_interact(Elements *const, Elements *const);
 void camp_draw(Elements *const ele);

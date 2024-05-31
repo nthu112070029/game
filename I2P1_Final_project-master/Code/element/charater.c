@@ -40,6 +40,9 @@ Elements *New_Character(int label)
     pDerivedObj->state = STOP;
     pDerivedObj->new_proj = false;
     pObj->pDerivedObj = pDerivedObj;
+
+    pObj->inter_obj[pObj->inter_len++] = camp_L;
+
     // setting derived object function
     pObj->Draw = Character_draw;
     pObj->Update = Character_update;
@@ -182,4 +185,20 @@ void _Character_update_position(Elements *const ele, int dx, int dy)
     hitbox->update_center_y(hitbox, dy);
 }
 
-void Character_interact(Elements *const self, Elements *const target) {}
+int campID_CharacterHit = -1;
+
+void Character_interact(Elements *const self_ele, Elements *const target_ele) {
+    Character *Obj = ((Character *)(self_ele->pDerivedObj));
+    if (target_ele->label == camp_L)
+    {
+        camp *camp1 = ((camp *)(target_ele->pDerivedObj));
+        if(camp1->hitbox->overlap(camp1->hitbox, Obj->hitbox))
+        {
+           campID_CharacterHit = target_ele->id;
+        }
+        else
+        {
+            campID_CharacterHit = -1;
+        }
+    }
+}
