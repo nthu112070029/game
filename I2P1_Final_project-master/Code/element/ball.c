@@ -60,6 +60,7 @@ Elements *New_Ball(int label)
 }
 
 int mouse_click_state = 0;
+bool tower_placed[1000];
 void Ball_update(Elements *const ele)
 {
     Ball *Obj = ((Ball *)(ele->pDerivedObj));
@@ -70,6 +71,7 @@ void Ball_update(Elements *const ele)
     Obj->y = mouse.y;
     if ((mouse_state[1] == true) && (mouse_click_state == 0)  && camp_BallHit)
     {
+        tower_placed[campID_CharacterHit] = true;
         _Register_elements(scene, New_Tower(Tower_L, campCenterX_Hit, campCenterY_Hit));
         mouse_click_state = 1;
     }
@@ -99,7 +101,7 @@ void Ball_interact(Elements *const self_ele, Elements *const ele)
     {
         
         camp *camp1 = ((camp *)(ele->pDerivedObj));
-        if(camp1->hitbox->overlap(camp1->hitbox, Obj->hitbox) && campID_CharacterHit == ele->id)
+        if(camp1->hitbox->overlap(camp1->hitbox, Obj->hitbox) && campID_CharacterHit == ele->id && !(tower_placed[campID_CharacterHit]))
         {
             Obj->color = al_map_rgb(0, 255, 0);
             camp_BallHit = true;

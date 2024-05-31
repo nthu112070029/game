@@ -112,7 +112,7 @@ void Tower_update(Elements *self)
         if (key_state[ALLEGRO_KEY_SPACE])
         {
             chara->state = T_ATK;
-        }
+        }/*
         else if (key_state[ALLEGRO_KEY_A])
         {
             chara->dir = false;
@@ -124,7 +124,7 @@ void Tower_update(Elements *self)
             chara->dir = true;
             _Tower_update_position(self, 5, 0);
             chara->state = T_MOVE;
-        }
+        }*/
         if (chara->gif_status[chara->state]->done)
             chara->state = T_STOP;
     }
@@ -135,35 +135,6 @@ void Tower_update(Elements *self)
             chara->state = T_STOP;
             chara->new_proj = false;
         }
-        /*
-        if (index_of_projit == 60)
-        //(chara->gif_status[T_ATK]->display_index == 2 && chara->new_proj == false)
-        {
-            Elements *pro;
-            pro = New_PofT(PofT_L,
-                            chara->x + ( chara->width )  - 100,
-                            chara->y + 10,
-                            5, 5);
-            _Register_elements(scene, pro);
-            pro = New_PofT(PofT_L,
-                            chara->x + ( chara->width )  - 100,
-                            chara->y + 10,
-                            5, -5);
-            _Register_elements(scene, pro);
-            pro = New_PofT(PofT_L,
-                            chara->x + ( chara->width )  - 100,
-                            chara->y + 10,
-                            -5, 5);
-            _Register_elements(scene, pro);
-            pro = New_PofT(PofT_L,
-                            chara->x + ( chara->width )  - 100,
-                            chara->y + 10,
-                            -5, -5);
-            _Register_elements(scene, pro);
-            chara->new_proj = true;
-            index_of_projit = 0;
-        }
-        */
     }
 }
 void Tower_draw(Elements *self)
@@ -173,7 +144,7 @@ void Tower_draw(Elements *self)
     ALLEGRO_BITMAP *frame = algif_get_bitmap(chara->gif_status[chara->state], al_get_time());
     if (frame)
     {
-        al_draw_bitmap(frame, chara->x, chara->y, ((chara->dir) ? ALLEGRO_FLIP_HORIZONTAL : 0));
+        al_draw_bitmap(frame, chara->x, chara->y, 0/*((chara->dir) ? ALLEGRO_FLIP_HORIZONTAL : 0)*/);
     }
     if (chara->state == T_ATK && chara->gif_status[chara->state]->display_index == 2)
     {
