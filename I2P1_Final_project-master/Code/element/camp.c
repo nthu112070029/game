@@ -1,5 +1,7 @@
 #include "camp.h"
 #include <stdio.h>
+#include "../shapes/Rectangle.h"
+
 /*
    [camp function]
 */
@@ -14,6 +16,10 @@ Elements *New_camp(int label)
     _camp_load_map(pDerivedObj);
     pDerivedObj->x = 0;
     pDerivedObj->y = 0;
+        pDerivedObj->hitbox = New_Rectangle(pDerivedObj->x,
+                                        pDerivedObj->y,
+                                        pDerivedObj->x + pDerivedObj->width,
+                                        pDerivedObj->y + pDerivedObj->height);
     // setting the interact object
     pObj->inter_obj[pObj->inter_len++] = Character_L;
     // setting derived object function

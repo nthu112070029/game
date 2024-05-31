@@ -20,15 +20,13 @@ Scene *New_GameScene(int label)
     
     // register element
     _Register_elements(pObj, New_Floor(Floor_L));
-    //_Register_elements(pObj, New_Teleport(Teleport_L));
-    //_Register_elements(pObj, New_Tree(Tree_L));
     _Register_elements(pObj, New_Character(Character_L));
-    //_Register_elements(pObj, New_Tower(Tower_L));
     _Register_elements(pObj, New_Ball(Ball_L));
     _Register_elements(pObj, New_castle(Castle_L));
     _Register_elements(pObj, New_money_col(money_col_L));  
     _Register_elements(pObj, New_camp(camp_L));
-     _Register_elements(pObj, New_Monster(Monster_L));
+    _Register_elements(pObj, New_Monster(Monster_L));
+    
     // setting derived object function
     pObj->Update = game_scene_update;
     pObj->Draw = game_scene_draw;
