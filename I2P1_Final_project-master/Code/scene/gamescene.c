@@ -5,6 +5,7 @@
 // #include "../element/monster.h"
 // 註冊在gamescene.h
 #include "../scene/sceneManager.h"
+
 void New_camp_use_map(Scene *const);
 
 /*
@@ -16,6 +17,7 @@ Scene *New_GameScene(int label)
     Scene *pObj = New_Scene(label);
     // setting derived object member
     pDerivedObj->background = al_load_bitmap("assets/image/stage.png");
+     
     pObj->pDerivedObj = pDerivedObj;
     
     // register element
@@ -40,6 +42,7 @@ int timer = 0;
 int counter_of_monster = 0;
 void game_scene_update(Scene *const pGameSceneObj)
 {
+      
     timer++;
 
     //create monster
@@ -89,12 +92,21 @@ void game_scene_update(Scene *const pGameSceneObj)
         if (ele->dele)
             _Remove_elements(pGameSceneObj, ele);
     }
-    if(window>1)
+    if(window==2)
     {
         pGameSceneObj->scene_end = true;
        
        
     }
+    if(monster_killed>5)// kill 6 game win
+    {
+        window=3;
+        pGameSceneObj->scene_end = true;
+        
+       
+       
+    }
+
 }
 void game_scene_draw(Scene *const pGameSceneObj)
 {

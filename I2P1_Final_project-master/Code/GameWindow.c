@@ -133,7 +133,10 @@ bool game_update(Game *game)
             break;
          case 2:
             create_scene(Lose_L);
-            break;   
+            break;
+        case 3:
+            create_scene(Win_L);
+            break;      
         case -1:
             return false;
         default:
