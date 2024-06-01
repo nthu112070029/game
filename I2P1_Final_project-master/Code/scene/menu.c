@@ -22,6 +22,9 @@ Scene *New_Menu(int label)
     // set the volume of instance
     al_set_sample_instance_gain(pDerivedObj->sample_instance, 0.1);
     pObj->pDerivedObj = pDerivedObj;
+
+
+
     // setting derived object function
     pObj->Update = menu_update;
     pObj->Draw = menu_draw;

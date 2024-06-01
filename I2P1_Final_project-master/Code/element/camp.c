@@ -1,6 +1,7 @@
 #include "camp.h"
 #include <stdio.h>
 #include "../shapes/Rectangle.h"
+ALLEGRO_BITMAP *bitmap_camp;
 
 /*
    [camp function]
@@ -10,7 +11,7 @@ Elements *New_camp(int label, int i, int j)
     camp *pDerivedObj = (camp *)malloc(sizeof(camp));
     Elements *pObj = New_Elements(label);
     // setting derived object member
-    pDerivedObj->img = al_load_bitmap("assets/image/camp.png");
+    pDerivedObj->img = bitmap_camp;
     pDerivedObj->width = al_get_bitmap_width(pDerivedObj->img);
     pDerivedObj->height = al_get_bitmap_height(pDerivedObj->img);
     //_camp_load_map(pDerivedObj); need to change
@@ -67,7 +68,13 @@ void camp_draw(Elements *const ele)
 void camp_destory(Elements *const ele)
 {
     camp *Obj = ((camp *)(ele->pDerivedObj));
-    al_destroy_bitmap(Obj->img);
+    //al_destroy_bitmap(Obj->img);
+    free(Obj->hitbox);
     free(Obj);
     free(ele);
+}
+
+void camp_load_bitmap()
+{
+    bitmap_camp = al_load_bitmap("assets/image/camp.png");
 }

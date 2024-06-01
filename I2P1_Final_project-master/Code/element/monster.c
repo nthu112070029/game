@@ -1,7 +1,7 @@
 #include "monster.h"
 #include "../shapes/Rectangle.h"
 #include <stdio.h>
-
+ALLEGRO_BITMAP *bitmap_monster;
 /*
    [monster function]
 */
@@ -16,7 +16,7 @@ Elements *New_Monster(int label)
     
 
     // initial the geometric information of monster
-    pDerivedObj->img = al_load_bitmap("assets/image/monster_Move.png");
+    pDerivedObj->img = bitmap_monster;
     pDerivedObj->width =al_get_bitmap_width(pDerivedObj->img);
     pDerivedObj->height = al_get_bitmap_height(pDerivedObj->img);
     pDerivedObj->x = 0;
@@ -88,7 +88,7 @@ void monster_draw(Elements *const ele)
 void monster_destory(Elements *const ele)
 {
     Monster *Obj = ((Monster *)(ele->pDerivedObj));
-     al_destroy_bitmap(Obj->img);
+    //al_destroy_bitmap(Obj->img);
     free(Obj->hitbox);
     free(Obj);
     free(ele);
@@ -96,10 +96,20 @@ void monster_destory(Elements *const ele)
 
 void _monster_update_position(Elements *const ele, int dx, int dy)
 {
-    Monster *chara = ((Monster *)(ele->pDerivedObj));
-    chara->x += dx;
-    chara->y += dy;
-    Shape *hitbox = chara->hitbox;
+    Monster *monster = ((Monster *)(ele->pDerivedObj));
+    if((monster->x + dx) < 0 || (monster->x + monster->width + dx) > WIDTH)
+    {
+        ele->dele = true;
+        return;
+    }
+    if((monster->y + dy) < 0 || (monster->y + monster->height + dy) > HEIGHT)
+    {
+        ele->dele = true;
+        return;
+    }
+    monster->x += dx;
+    monster->y += dy;
+    Shape *hitbox = monster->hitbox;
     hitbox->update_center_x(hitbox, dx);
     hitbox->update_center_y(hitbox, dy);
 }
@@ -134,4 +144,9 @@ void monster_interact(Elements *const self, Elements *const target) {
             printf(" monster_killed %d ", monster_killed);
         }
     }
+}
+
+void monster_load_bitmap()
+{
+    bitmap_monster = al_load_bitmap("assets/image/monster_Move.png");
 }

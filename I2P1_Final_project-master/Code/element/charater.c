@@ -178,6 +178,8 @@ void Character_destory(Elements *const ele)
 void _Character_update_position(Elements *const ele, int dx, int dy)
 {
     Character *chara = ((Character *)(ele->pDerivedObj));
+    if((chara->x + dx) < 0 || (chara->x + chara->width + dx) > WIDTH) return;
+    if((chara->y + dy) < 0 || (chara->y + chara->height + dy) > HEIGHT) return;
     chara->x += dx;
     chara->y += dy;
     Shape *hitbox = chara->hitbox;

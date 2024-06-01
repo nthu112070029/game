@@ -6,9 +6,8 @@
 #include "../algif5/src/algif.h"
 #include <stdio.h>
 #include <stdbool.h>
-
+ALLEGRO_BITMAP *bitmap_tower ; 
 extern int timer;
-
 int index_of_projit = 0;
 /*
    [Tower function]
@@ -18,6 +17,8 @@ Elements *New_Tower(int label, int x, int y)
     
     Tower *pDerivedObj = (Tower *)malloc(sizeof(Tower));
     Elements *pObj = New_Elements(label);
+
+    /*
     // setting derived object member
     // load Tower images
     char state_string[3][10] = {"stop", "move", "attack"};
@@ -46,6 +47,18 @@ Elements *New_Tower(int label, int x, int y)
     // initial the animation component
     pDerivedObj->state = T_STOP;
     pDerivedObj->new_proj = false;
+    */
+
+    pDerivedObj->img = bitmap_tower;
+    pDerivedObj->width = al_get_bitmap_width(pDerivedObj->img);
+    pDerivedObj->height = al_get_bitmap_height(pDerivedObj->img);
+    pDerivedObj->x = x-(pDerivedObj->width)/2;
+    pDerivedObj->y = y-(pDerivedObj->height)/2;
+    pDerivedObj->hitbox = New_Rectangle(pDerivedObj->x,
+                                        pDerivedObj->y,
+                                        pDerivedObj->x + pDerivedObj->width,
+                                        pDerivedObj->y + pDerivedObj->height);
+
     pObj->pDerivedObj = pDerivedObj;
     // setting derived object function
     pObj->Draw = Tower_draw;
@@ -59,7 +72,7 @@ void Tower_update(Elements *self)
 {
     // use the idea of finite state machine to deal with different state
     Tower *chara = ((Tower *)(self->pDerivedObj));
-    if (!(timer%60))//(chara->gif_status[T_ATK]->display_index == 2 && chara->new_proj == false)
+    if (!(timer%120))
     {           
         //create projectile of tower
         Elements *pro;
@@ -83,9 +96,10 @@ void Tower_update(Elements *self)
                         chara->y + ( chara->height ) /2-5,
                         -5, -5);
         _Register_elements(scene, pro);
-        chara->new_proj = true;
+        //chara->new_proj = true; useless
     }
 
+    /*
     if (chara->state == T_STOP)
     {
         if (key_state[ALLEGRO_KEY_SPACE])
@@ -112,7 +126,9 @@ void Tower_update(Elements *self)
         if (key_state[ALLEGRO_KEY_SPACE])
         {
             chara->state = T_ATK;
-        }/*
+        }*/
+        
+        /*
         else if (key_state[ALLEGRO_KEY_A])
         {
             chara->dir = false;
@@ -124,7 +140,7 @@ void Tower_update(Elements *self)
             chara->dir = true;
             _Tower_update_position(self, 5, 0);
             chara->state = T_MOVE;
-        }*/
+        }
         if (chara->gif_status[chara->state]->done)
             chara->state = T_STOP;
     }
@@ -136,27 +152,32 @@ void Tower_update(Elements *self)
             chara->new_proj = false;
         }
     }
+    */
 }
 void Tower_draw(Elements *self)
 {
-    // with the state, draw corresponding image
-    Tower *chara = ((Tower *)(self->pDerivedObj));
-    ALLEGRO_BITMAP *frame = algif_get_bitmap(chara->gif_status[chara->state], al_get_time());
-    if (frame)
-    {
-        al_draw_bitmap(frame, chara->x, chara->y, 0/*((chara->dir) ? ALLEGRO_FLIP_HORIZONTAL : 0)*/);
-    }
-    if (chara->state == T_ATK && chara->gif_status[chara->state]->display_index == 2)
-    {
-        al_play_sample_instance(chara->atk_Sound);
-    }
+    
+    // // with the state, draw corresponding image
+    // Tower *chara = ((Tower *)(self->pDerivedObj));
+    // ALLEGRO_BITMAP *frame = algif_get_bitmap(chara->gif_status[chara->state], al_get_time());
+    // if (frame)
+    // {
+    //     al_draw_bitmap(frame, chara->x, chara->y, 0/*((chara->dir) ? ALLEGRO_FLIP_HORIZONTAL : 0)*/);
+    // }
+    // if (chara->state == T_ATK && chara->gif_status[chara->state]->display_index == 2)
+    // {
+    //     al_play_sample_instance(chara->atk_Sound);
+    // }
+
+    Tower *Obj = ((Tower *)(self->pDerivedObj));
+    al_draw_bitmap(Obj->img, Obj->x, Obj->y, 0);
 }
 void Tower_destory(Elements *self)
 {
     Tower *Obj = ((Tower *)(self->pDerivedObj));
-    al_destroy_sample_instance(Obj->atk_Sound);
-    for (int i = 0; i < 3; i++)
-        algif_destroy_animation(Obj->gif_status[i]);
+    // al_destroy_sample_instance(Obj->atk_Sound);
+    // for (int i = 0; i < 3; i++)
+    //     algif_destroy_animation(Obj->gif_status[i]);
     free(Obj->hitbox);
     free(Obj);
     free(self);
@@ -173,3 +194,8 @@ void _Tower_update_position(Elements *self, int dx, int dy)
 }
 
 void Tower_interact(Elements *self, Elements *tar) {}
+
+void tower_load_bitmap()
+{
+    bitmap_tower = al_load_bitmap("assets/image/tower.png");
+}

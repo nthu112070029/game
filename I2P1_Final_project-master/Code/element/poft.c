@@ -1,5 +1,6 @@
 #include "poft.h"
 #include "../shapes/Circle.h"
+ALLEGRO_BITMAP *bitmap_poft;
 /*
    [PofT function]
 */
@@ -8,7 +9,7 @@ Elements *New_PofT(int label, int x, int y, int vx, int vy)
     PofT *pDerivedObj = (PofT *)malloc(sizeof(PofT));
     Elements *pObj = New_Elements(label);
     // setting derived object member
-    pDerivedObj->img = al_load_bitmap("assets/image/projectile.png");
+    pDerivedObj->img = bitmap_poft;
     pDerivedObj->width = al_get_bitmap_width(pDerivedObj->img);
     pDerivedObj->height = al_get_bitmap_height(pDerivedObj->img);
     pDerivedObj->x = x;
@@ -38,6 +39,16 @@ void PofT_update(Elements *self)
 void _PofT_update_position(Elements *self, int dx, int dy)
 {
     PofT *Obj = ((PofT *)(self->pDerivedObj));
+    if((Obj->x + dx) < 0 || (Obj->x + Obj->width + dx) > WIDTH)
+    {
+        self->dele = true;
+        return;
+    }
+    if((Obj->y + dy) < 0 || (Obj->y + Obj->height + dy) > HEIGHT)
+    {
+        self->dele = true;
+        return;
+    }
     Obj->x += dx;
     Obj->y += dy;
     Shape *hitbox = Obj->hitbox;
@@ -78,8 +89,16 @@ void PofT_draw(Elements *self)
 void PofT_destory(Elements *self)
 {
     PofT *Obj = ((PofT *)(self->pDerivedObj));
-    al_destroy_bitmap(Obj->img);
+    //al_destroy_bitmap(Obj->img);
     free(Obj->hitbox);
     free(Obj);
     free(self);
+}
+
+void poft_load_bitmap_sound()
+{
+    bitmap_poft = al_load_bitmap("assets/image/projectile.png");
+    poft_Sound = al_create_sample_instance(al_load_sample("assets/sound/laser_sfx.ogg"));//taking_damage_sfx.ogg
+    al_set_sample_instance_playmode(poft_Sound, ALLEGRO_PLAYMODE_ONCE);
+    al_attach_sample_instance_to_mixer(poft_Sound, al_get_default_mixer());
 }

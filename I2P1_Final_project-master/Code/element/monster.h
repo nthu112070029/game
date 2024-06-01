@@ -33,5 +33,5 @@ void monster_update(Elements *const ele);
 void monster_interact(Elements *const, Elements *const);
 void monster_draw(Elements *const ele);
 void monster_destory(Elements *const ele);
-
+void monster_load_bitmap();
 #endif

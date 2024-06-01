@@ -22,4 +22,6 @@ void PofT_interact(Elements *self, Elements *tar);
 void PofT_draw(Elements *self);
 void PofT_destory(Elements *self);
 void _PofT_update_position(Elements *self, int dx, int dy);
+void poft_load_bitmap_sound();
+ALLEGRO_SAMPLE_INSTANCE *poft_Sound;
 #endif

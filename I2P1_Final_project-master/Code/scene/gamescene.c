@@ -13,12 +13,30 @@ void New_camp_use_map(Scene *const);
 */
 Scene *New_GameScene(int label)
 {
+
+    camp_load_bitmap();
+    monster_load_bitmap();
+    tower_load_bitmap();
+    poft_load_bitmap_sound();
+
     GameScene *pDerivedObj = (GameScene *)malloc(sizeof(GameScene));
     Scene *pObj = New_Scene(label);
     // setting derived object member
     pDerivedObj->background = al_load_bitmap("assets/image/stage.png");
-     
+    
+
+    //sound
+    pDerivedObj->song = al_load_sample("assets/sound/game_scene.mp3");
+    al_reserve_samples(20);
+    pDerivedObj->sample_instance = al_create_sample_instance(pDerivedObj->song);
+    // Loop the song until the display closes
+    al_set_sample_instance_playmode(pDerivedObj->sample_instance, ALLEGRO_PLAYMODE_LOOP);
+    al_restore_default_mixer();
+    al_attach_sample_instance_to_mixer(pDerivedObj->sample_instance, al_get_default_mixer());
+    // set the volume of instance
+    al_set_sample_instance_gain(pDerivedObj->sample_instance, 0.1);
     pObj->pDerivedObj = pDerivedObj;
+    //pObj->pDerivedObj = pDerivedObj;
     
     // register element
     _Register_elements(pObj, New_Floor(Floor_L));
@@ -30,6 +48,9 @@ Scene *New_GameScene(int label)
     _Register_elements(pObj, New_Monster(Monster_L));
     _Register_elements(pObj, New_cannon(Cannon_L));
     New_camp_use_map(pObj);
+
+    
+
 
     // setting derived object function
     pObj->Update = game_scene_update;
@@ -57,6 +78,10 @@ void game_scene_update(Scene *const pGameSceneObj)
         {
             _Register_elements(scene, New_Monster(Monster_L));
         }
+    }
+    if (!(timer%120))
+    {
+        if (counter_of_tower > 0)al_play_sample_instance(poft_Sound);
     }
     //printf("%d\n", timer);
 
@@ -102,9 +127,6 @@ void game_scene_update(Scene *const pGameSceneObj)
     {
         window=3;
         pGameSceneObj->scene_end = true;
-        
-       
-       
     }
 
 }
@@ -112,6 +134,9 @@ void game_scene_draw(Scene *const pGameSceneObj)
 {
     al_clear_to_color(al_map_rgb(0, 0, 0));
     GameScene *gs = ((GameScene *)(pGameSceneObj->pDerivedObj));
+
+    al_play_sample_instance(gs->sample_instance);
+
     al_draw_bitmap(gs->background, 0, 0, 0);
     ElementVec allEle = _Get_all_elements(pGameSceneObj);
     for (int i = 0; i < allEle.len; i++)
@@ -131,6 +156,7 @@ void game_scene_destroy(Scene *const pGameSceneObj)
         Elements *ele = allEle.arr[i];
         ele->Destroy(ele);
     }
+    al_destroy_sample_instance(Obj->sample_instance);
     free(Obj);
     free(pGameSceneObj);
 }

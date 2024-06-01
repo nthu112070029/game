@@ -39,5 +39,6 @@ void Ball_draw(Elements *const self);
 void Ball_destory(Elements *const self);
 
 bool camp_BallHit;
+int counter_of_tower;
 
 #endif

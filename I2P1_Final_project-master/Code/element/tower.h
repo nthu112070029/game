@@ -11,23 +11,25 @@
 /*
    [Tower object]
 */
-typedef enum TowerType
-{
-    T_STOP = 0,
-    T_MOVE,
-    T_ATK
-} TowerType;
+// typedef enum TowerType
+// {
+//     T_STOP = 0,
+//     T_MOVE,
+//     T_ATK
+// } TowerType;
 typedef struct _Tower
 {
     int x, y;
     int width, height;              // the width and height of image
-    bool dir;                       // true: face to right, false: face to left
-    int state;                      // the state of Tower
-    ALGIF_ANIMATION *gif_status[3]; // gif for each state. 0: stop, 1: move, 2:attack
-    ALLEGRO_SAMPLE_INSTANCE *atk_Sound;
-    int anime;      // counting the time of animation
-    int anime_time; // indicate how long the animation
-    bool new_proj;  //What is this line function?
+    // bool dir;                       // true: face to right, false: face to left
+    // int state;                      // the state of Tower
+    // ALGIF_ANIMATION *gif_status[3]; // gif for each state. 0: stop, 1: move, 2:attack
+    // ALLEGRO_SAMPLE_INSTANCE *atk_Sound;
+    // int anime;      // counting the time of animation
+    // int anime_time; // indicate how long the animation
+    // bool new_proj;  //What is this line function?
+
+    ALLEGRO_BITMAP *img;
     Shape *hitbox; // the hitbox of object
 } Tower;
 Elements *New_Tower(int label, int x, int y);
@@ -36,5 +38,5 @@ void Tower_update(Elements *self);
 void Tower_interact(Elements *self, Elements *target);
 void Tower_draw(Elements *self);
 void Tower_destory(Elements *self);
-
+void tower_load_bitmap();
 #endif

@@ -14,18 +14,9 @@
 #include "allegro5/allegro_primitives.h"
 
 /*
-//mouse
-#include <allegro5/allegro.h>
-
-al_install_mouse;
-ALLEGRO_EVENT_QUEUE *event_queue = NULL;
-ALLEGRO_EVENT event;
-al_register_event_source(event_queue, al_get_mouse_event_source());
-*/
-
-/*
    [Ball function]
 */
+int counter_of_tower = 0;
 bool camp_BallHit = false;
 int campCenterX_Hit ,campCenterY_Hit;
 
@@ -74,6 +65,7 @@ void Ball_update(Elements *const ele)
         tower_placed[campID_CharacterHit] = true;
         _Register_elements(scene, New_Tower(Tower_L, campCenterX_Hit, campCenterY_Hit));
         mouse_click_state = 1;
+        counter_of_tower++;
     }
     if (mouse_state[1] == false)
     {

@@ -20,5 +20,5 @@ void camp_update(Elements *const ele);
 void camp_interact(Elements *const, Elements *const);
 void camp_draw(Elements *const ele);
 void camp_destory(Elements *const ele);
-
+void camp_load_bitmap();
 #endif

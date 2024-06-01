@@ -24,7 +24,6 @@ typedef enum EleType
     Teleport_L,
     Tree_L,
     camp_L,
-    Character_L,
     Projectile_L,
     PofT_L,
     Tower_L,
@@ -33,14 +32,15 @@ typedef enum EleType
     Ball_L,
     Monster_L,
     Cannon_L,
-  
+    Character_L,
 
     
 }EleType;
 typedef struct _GameScene
 {
     ALLEGRO_BITMAP *background;
-    
+    ALLEGRO_SAMPLE *song;
+    ALLEGRO_SAMPLE_INSTANCE *sample_instance;
     
 } GameScene;
 Scene *New_GameScene(int label);
