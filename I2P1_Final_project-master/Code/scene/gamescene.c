@@ -92,7 +92,7 @@ void game_scene_update(Scene *const pGameSceneObj)
     if(window>1)
     {
         pGameSceneObj->scene_end = true;
-       printf("gamescence\n");
+       
        
     }
 }

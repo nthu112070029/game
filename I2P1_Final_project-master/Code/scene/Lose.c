@@ -8,7 +8,7 @@ Scene *New_Lose(int label)
     Lose *pDerivedObj = (Lose *)malloc(sizeof(Lose));
     Scene *pObj = New_Scene(label);
     // setting derived object member
-    printf("1\n");
+    
     pDerivedObj->font = al_load_ttf_font("assets/font/pirulen.ttf", 12, 0);
     // Load sound
     pDerivedObj->song = al_load_sample("assets/sound/Lose.mp3");

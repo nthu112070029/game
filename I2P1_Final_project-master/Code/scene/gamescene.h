@@ -39,7 +39,7 @@ typedef enum EleType
 typedef struct _GameScene
 {
     ALLEGRO_BITMAP *background;
-    int state;
+    
 } GameScene;
 Scene *New_GameScene(int label);
 void game_scene_update(Scene *const pGameSceneObj);
