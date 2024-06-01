@@ -32,6 +32,7 @@ Elements *New_Monster(int label)
     //interact obj
     pObj->inter_obj[pObj->inter_len++] = Floor_L;
     pObj->inter_obj[pObj->inter_len++] = PofT_L;
+    pObj->inter_obj[pObj->inter_len++] = Projectile_L;
     // setting derived object function
     pObj->Draw = monster_draw;
     pObj->Update = monster_update;
@@ -116,6 +117,16 @@ void monster_interact(Elements *const self, Elements *const target) {
     else if (target->label == PofT_L)
     {
         PofT *poft = ((PofT *)(target->pDerivedObj));
+        if (poft->hitbox->overlap(poft->hitbox, Obj->hitbox))
+        {
+            self->dele = true;   
+            monster_killed++;         
+            printf(" monster_killed %d ", monster_killed);
+        }
+    }
+    else if (target->label == Projectile_L)
+    {
+        Projectile *poft = ((Projectile *)(target->pDerivedObj));
         if (poft->hitbox->overlap(poft->hitbox, Obj->hitbox))
         {
             self->dele = true;   

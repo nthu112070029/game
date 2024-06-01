@@ -29,10 +29,13 @@ Elements *New_Projectile(int label, int x, int y, int v)
 
     return pObj;
 }
+
 void Projectile_update(Elements *const ele)
 {
     Projectile *Obj = ((Projectile *)(ele->pDerivedObj));
-    _Projectile_update_position(ele, Obj->v, 0);
+   
+    _Projectile_update_position(ele, 0,Obj->v);
+    
 }
 void _Projectile_update_position(Elements *const self, int dx, int dy)
 {
