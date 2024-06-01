@@ -66,6 +66,7 @@ void Ball_update(Elements *const ele)
         _Register_elements(scene, New_Tower(Tower_L, campCenterX_Hit, campCenterY_Hit));
         mouse_click_state = 1;
         counter_of_tower++;
+        money_num -= 400;
     }
     if (mouse_state[1] == false)
     {
@@ -93,7 +94,7 @@ void Ball_interact(Elements *const self_ele, Elements *const ele)
     {
         
         camp *camp1 = ((camp *)(ele->pDerivedObj));
-        if(camp1->hitbox->overlap(camp1->hitbox, Obj->hitbox) && campID_CharacterHit == ele->id && !(tower_placed[campID_CharacterHit]))
+        if(camp1->hitbox->overlap(camp1->hitbox, Obj->hitbox) && (money_num > 400)  && campID_CharacterHit == ele->id && !(tower_placed[campID_CharacterHit]))
         {
             Obj->color = al_map_rgb(0, 255, 0);
             camp_BallHit = true;

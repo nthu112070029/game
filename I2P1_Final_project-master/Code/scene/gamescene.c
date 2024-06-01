@@ -123,7 +123,7 @@ void game_scene_update(Scene *const pGameSceneObj)
        
        
     }
-    if(monster_killed>5)// kill 6 game win
+    if(monster_killed>50)// kill 6 game win
     {
         window=3;
         pGameSceneObj->scene_end = true;

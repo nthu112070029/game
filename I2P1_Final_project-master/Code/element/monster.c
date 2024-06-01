@@ -129,8 +129,9 @@ void monster_interact(Elements *const self, Elements *const target) {
         PofT *poft = ((PofT *)(target->pDerivedObj));
         if (poft->hitbox->overlap(poft->hitbox, Obj->hitbox))
         {
-            self->dele = true;   
-            monster_killed++;         
+            self->dele = true;
+            money_num +=10;
+            monster_killed++;     
             printf(" monster_killed %d ", monster_killed);
         }
     }

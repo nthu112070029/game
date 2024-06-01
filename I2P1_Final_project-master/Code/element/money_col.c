@@ -1,6 +1,5 @@
 #include "money_col.h"
 #include "../shapes/Rectangle.h"
-int money_num = 1000;
 /*
    [money_col function]
 */
@@ -28,7 +27,8 @@ void money_col_interact(Elements *const self_ele, Elements *const ele) {}
 void money_col_draw(Elements *const ele)
 {
     money_col *Obj = ((money_col *)(ele->pDerivedObj));
-    char *text = ("Money: 1000");
+    char text[100];
+    sprintf(text, "Money: %d", money_num);
     al_draw_text(Obj->font, al_map_rgb(0, 0, 0), 0, 670, 0, text);
   
 }
