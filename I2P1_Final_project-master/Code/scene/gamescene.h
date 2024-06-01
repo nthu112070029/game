@@ -14,7 +14,7 @@
 #include "../element/money_col.h"
 #include "../element/camp.h"
 #include "../element/monster.h"
-
+#include "../element/cannon.h"
 /*
    [game scene object]
 */
@@ -32,6 +32,7 @@ typedef enum EleType
     money_col_L,
     Ball_L,
     Monster_L,
+    Cannon_L,
   
 
     
@@ -39,7 +40,8 @@ typedef enum EleType
 typedef struct _GameScene
 {
     ALLEGRO_BITMAP *background;
-    int state;
+    
+    
 } GameScene;
 Scene *New_GameScene(int label);
 void game_scene_update(Scene *const pGameSceneObj);

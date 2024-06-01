@@ -5,6 +5,7 @@ const double FPS = 60.0;
 const int WIDTH = 1000;
 const int HEIGHT = 700;
 int window = 0;
+int monster_killed=0;
 ALLEGRO_EVENT_QUEUE *event_queue = NULL;
 ALLEGRO_EVENT event;
 ALLEGRO_TIMER *fps = NULL;

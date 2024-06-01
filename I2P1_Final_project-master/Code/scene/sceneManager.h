@@ -7,6 +7,7 @@ typedef enum SceneType
     Menu_L = 0,
     GameScene_L,
     Lose_L,
+    Win_L,
 } SceneType;
 void create_scene(SceneType);
 

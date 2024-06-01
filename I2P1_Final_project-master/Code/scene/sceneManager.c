@@ -1,6 +1,6 @@
 #include "sceneManager.h"
 #include "menu.h"
-
+#include "Win.h"
 #include "Lose.h"
 #include "gamescene.h"
 Scene *scene = NULL;
@@ -17,7 +17,8 @@ void create_scene(SceneType type)
         break;
      case Lose_L:
         scene = New_Lose(Lose_L);
-       
+     case Win_L:
+        scene = New_Win(Win_L);
         break;    
     default:
         break;
