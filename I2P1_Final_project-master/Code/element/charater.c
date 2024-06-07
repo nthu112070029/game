@@ -133,17 +133,15 @@ void Character_update(Elements *const ele)
             Elements *pro;
             if (chara->dir)
             {
-                pro = New_Projectile(Projectile_L,
-                                     chara->x + chara->width - 100,
-                                     chara->y + 10,
-                                     5);
+                pro =  New_PofT(PofT_L, 
+                                chara->x + chara->width - 100,
+                                chara->y + 10,5, 0);
             }
             else
             {
-                pro = New_Projectile(Projectile_L,
-                                     chara->x - 50,
-                                     chara->y + 10,
-                                     -5);
+                pro = New_PofT(PofT_L, 
+                                chara->x + chara->width - 100,
+                                chara->y + 10,-5, 0);
             }
             _Register_elements(scene, pro);
             chara->new_proj = true;
