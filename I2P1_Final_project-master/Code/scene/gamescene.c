@@ -59,7 +59,7 @@ Scene *New_GameScene(int label)
     return pObj;
 }
 
-int timer = 0;
+//int timer = 0;
 int counter_of_monster = 0;
 void game_scene_update(Scene *const pGameSceneObj)
 {

@@ -7,7 +7,6 @@
 #include <stdio.h>
 #include <stdbool.h>
 ALLEGRO_BITMAP *bitmap_tower ; 
-extern int timer;
 int index_of_projit = 0;
 /*
    [Tower function]

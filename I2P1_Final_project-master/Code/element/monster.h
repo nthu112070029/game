@@ -22,6 +22,7 @@ typedef struct _Monster
 {
     int x, y;          // the position of image
     int width, height; // the width and height of image
+    int HP; // health point
     ALLEGRO_BITMAP *img;
     int state;
     Shape *hitbox; // the hitbox of object

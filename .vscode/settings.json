@@ -16,6 +16,18 @@
         "poft.h": "c",
         "global.h": "c",
         "stdio.h": "c",
-        "gamescene.h": "c"
+        "gamescene.h": "c",
+        "*.tcc": "c",
+        "bitset": "c",
+        "optional": "c",
+        "functional": "c",
+        "fstream": "c",
+        "future": "c",
+        "istream": "c",
+        "ostream": "c",
+        "sstream": "c",
+        "streambuf": "c",
+        "regex": "c",
+        "*.inc": "c"
     }
 }

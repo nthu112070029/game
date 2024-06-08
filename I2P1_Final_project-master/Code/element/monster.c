@@ -5,7 +5,7 @@ ALLEGRO_BITMAP *bitmap_monster;
 /*
    [monster function]
 */
-Elements *New_Monster(int label)
+Elements *New_Monster(int label) // register at gamesence
 {
     Monster *pDerivedObj = (Monster *)malloc(sizeof(Monster));
     Elements *pObj = New_Elements(label);
@@ -21,6 +21,8 @@ Elements *New_Monster(int label)
     pDerivedObj->height = al_get_bitmap_height(pDerivedObj->img);
     pDerivedObj->x = 0;
     pDerivedObj->y = 100;
+    pDerivedObj->HP = timer/600;
+    printf("HP %d\n", pDerivedObj->HP);
     pDerivedObj->hitbox = New_Rectangle(pDerivedObj->x,
                                         pDerivedObj->y,
                                         pDerivedObj->x + pDerivedObj->width,
@@ -126,13 +128,19 @@ void monster_interact(Elements *const self, Elements *const target) {
     }
     else if (target->label == PofT_L)
     {
+        
         PofT *poft = ((PofT *)(target->pDerivedObj));
         if (poft->hitbox->overlap(poft->hitbox, Obj->hitbox))
         {
-            self->dele = true;
-            money_num +=10;
-            monster_killed++;     
-            printf(" monster_killed %d ", monster_killed);
+            Obj->HP--;
+            printf("HP %d\n", Obj->HP);
+            if(Obj->HP < 0)
+            {
+                 self->dele = true;
+                money_num +=10;
+                monster_killed++;     
+                printf(" monster_killed %d ", monster_killed);
+            }
         }
     }
     else if (target->label == Projectile_L)
