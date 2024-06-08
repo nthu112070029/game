@@ -17,8 +17,9 @@ extern const double FPS;
 extern const int WIDTH;
 extern const int HEIGHT;
 extern int window;
-extern int timer;
 extern int monster_killed;//計算怪被殺的數量
+extern int timer;
+extern int mouse_click_state;
 extern bool key_state[ALLEGRO_KEY_MAX];
 extern bool mouse_state[ALLEGRO_MOUSE_MAX_EXTRA_AXES];
 extern Point mouse;
@@ -26,5 +27,6 @@ extern ALLEGRO_EVENT_QUEUE *event_queue;
 extern ALLEGRO_EVENT event;
 extern ALLEGRO_TIMER *fps;
 extern bool debug_mode;
-int money_num;
+extern int money_num;
+extern bool tower_placed[1000];
 #endif

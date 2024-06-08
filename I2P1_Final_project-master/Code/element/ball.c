@@ -12,7 +12,6 @@
 #include "allegro5/allegro_font.h"
 #include "allegro5/allegro_primitives.h"
 #include "allegro5/allegro_primitives.h"
-extern int mouse_click_state;
 /*
    [Ball function]
 */
@@ -50,7 +49,7 @@ Elements *New_Ball(int label)
     return pObj;
 }
 
-bool tower_placed[1000];
+//bool tower_placed[1000];
 void Ball_update(Elements *const ele)
 {
     Ball *Obj = ((Ball *)(ele->pDerivedObj));

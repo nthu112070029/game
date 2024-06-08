@@ -9,7 +9,9 @@ void New_camp_use_map(Scene *const);
 */
 Scene *New_GameScene(int label)
 {
-
+    timer = 0;
+    money_num = 1000;
+    memset(tower_placed, 0, 1000);
     camp_load_bitmap();
     monster_load_bitmap();
     tower_load_bitmap();
