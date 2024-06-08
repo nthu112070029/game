@@ -10,6 +10,7 @@ Scene *New_Lose(int label)
     // setting derived object member
     
     pDerivedObj->font = al_load_ttf_font("assets/font/pirulen.ttf", 12, 0);
+     pDerivedObj->background = al_load_bitmap("assets/image/lose.png");
     // Load sound
     pDerivedObj->song = al_load_sample("assets/sound/lose.mp3");
     al_reserve_samples(20);
@@ -39,8 +40,9 @@ void Lose_draw(Scene *const pLoseObj)
 {
      
     Lose *Obj = ((Lose *)(pLoseObj->pDerivedObj));
-    al_draw_text(Obj->font, al_map_rgb(255, 255, 255), Obj->title_x, Obj->title_y, ALLEGRO_ALIGN_CENTRE, "YOU LOSE");
-    al_draw_rectangle(Obj->title_x - 150, Obj->title_y - 30, Obj->title_x + 150, Obj->title_y + 30, al_map_rgb(255, 255, 255), 0);
+     al_draw_bitmap(Obj->background, 0, 0, 0);
+   //al_draw_text(Obj->font, al_map_rgb(255, 255, 255), Obj->title_x, Obj->title_y, ALLEGRO_ALIGN_CENTRE, "YOU LOSE");
+    //al_draw_rectangle(Obj->title_x - 150, Obj->title_y - 30, Obj->title_x + 150, Obj->title_y + 30, al_map_rgb(255, 255, 255), 0);
     al_play_sample_instance(Obj->sample_instance);
     ElementVec allEle = _Get_all_elements(pLoseObj);
     for (int i = 0; i < allEle.len; i++)
@@ -52,6 +54,8 @@ void Lose_draw(Scene *const pLoseObj)
 void Lose_destroy(Scene *const pLoseObj)
 {
     Lose *Obj = ((Lose *)(pLoseObj->pDerivedObj));
+     ALLEGRO_BITMAP *background = Obj->background;
+    al_destroy_bitmap(background);
     al_destroy_font(Obj->font);
     al_destroy_sample(Obj->song);
     al_destroy_sample_instance(Obj->sample_instance);

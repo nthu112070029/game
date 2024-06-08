@@ -12,6 +12,7 @@ Scene *New_Win(int label)
     pDerivedObj->font = al_load_ttf_font("assets/font/pirulen.ttf", 12, 0);
     // Load sound
     pDerivedObj->song = al_load_sample("assets/sound/win.mp3");
+     pDerivedObj->background = al_load_bitmap("assets/image/win.png");
     al_reserve_samples(20);
     pDerivedObj->sample_instance = al_create_sample_instance(pDerivedObj->song);
     pDerivedObj->title_x = WIDTH / 2;
@@ -37,13 +38,16 @@ void Win_draw(Scene *const pWinObj)
 {
      
     Win *Obj = ((Win *)(pWinObj->pDerivedObj));
-    al_draw_text(Obj->font, al_map_rgb(255, 255, 255), Obj->title_x, Obj->title_y, ALLEGRO_ALIGN_CENTRE, "YOU Win");
-    al_draw_rectangle(Obj->title_x - 150, Obj->title_y - 30, Obj->title_x + 150, Obj->title_y + 30, al_map_rgb(255, 255, 255), 0);
+     al_draw_bitmap(Obj->background,0,0,0);
+   // al_draw_text(Obj->font, al_map_rgb(255, 255, 255), Obj->title_x, Obj->title_y, ALLEGRO_ALIGN_CENTRE, "YOU Win");
+    //al_draw_rectangle(Obj->title_x - 150, Obj->title_y - 30, Obj->title_x + 150, Obj->title_y + 30, al_map_rgb(255, 255, 255), 0);
     al_play_sample_instance(Obj->sample_instance);
 }
 void Win_destroy(Scene *const pWinObj)
 {
     Win *Obj = ((Win *)(pWinObj->pDerivedObj));
+     ALLEGRO_BITMAP *background = Obj->background;
+    al_destroy_bitmap(background);
     al_destroy_font(Obj->font);
     al_destroy_sample(Obj->song);
     al_destroy_sample_instance(Obj->sample_instance);
