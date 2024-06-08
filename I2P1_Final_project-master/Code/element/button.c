@@ -1,15 +1,8 @@
 #include "button.h"
 #include "../scene/lose.h"
-// #include "../scene/sceneManager.h"
-// #include "../shapes/Circle.h"
-// #include "../algif5/src/algif.h"
 #include <stdio.h>
 #include "../shapes/Rectangle.h"
-// #include <allegro5/allegro_audio.h>
-// #include "allegro5/allegro_image.h"
-// #include "allegro5/allegro_font.h"
-// #include "allegro5/allegro_primitives.h"
-// #include "allegro5/allegro_primitives.h"
+extern int mouse_click_state;
 
 /*
    [Button function]
@@ -25,8 +18,8 @@ Elements *New_Button(int label)
     pDerivedObj->state = 0;
     pDerivedObj->width = al_get_bitmap_width(pDerivedObj->img[0]);
     pDerivedObj->height = al_get_bitmap_height(pDerivedObj->img[0]);
-    pDerivedObj->x = 500 - pDerivedObj->width/2;
-    pDerivedObj->y = 500 - pDerivedObj->height/2;
+    pDerivedObj->x = 730 - pDerivedObj->width/2;
+    pDerivedObj->y = 550 - pDerivedObj->height/2;
 
     // 初始化碰撞体
     pDerivedObj->hitbox = New_Rectangle(pDerivedObj->x,
@@ -49,48 +42,30 @@ Elements *New_Button(int label)
 
 void Button_update(Elements *const ele)
 {
-    // Button *Obj = ((Button *)(ele->pDerivedObj));
-    // Shape *hitbox = Obj->hitbox;
-    // hitbox->update_center_x(hitbox, Obj->x);
-    //hitbox->update_center_y(hitbox, Obj->y);
-    //Obj->x = 500;
-    //Obj->y = 500;
-    // if ((mouse_state[1] == true) && (mouse_click_state == 0)  && camp_ButtonHit)
-    // {
-    //     //tower_placed[campID_CharacterHit] = true;
-    //     //_Register_elements(scene, New_Tower(Tower_L, campCenterX_Hit, campCenterY_Hit));
-    //     mouse_click_state = 1;
-    //     counter_of_tower++;
-    //     money_num -= 400;
-    // }
-    // if (mouse_state[1] == false)
-    // {
-    //     mouse_click_state = 0;
-    // }
-    
-    //_Button_update_position(ele, Obj->v, 0);
+    Button * Obj = (Button *)(ele->pDerivedObj);
+    if ((mouse_state[1] == true) && (mouse_click_state == 0) && Obj->state==1)
+    {
+        window = 1;
+        mouse_click_state = 1;
+    }
+    if (mouse_state[1] == false)
+    {
+        mouse_click_state = 0;
+    }
 }
 
 void _Button_update_position(Elements *const self, int dx, int dy)
 {
-    // Button *Obj = ((Button *)(self->pDerivedObj));
-    // Obj->x += dx;
-    // Obj->y += dy;
-    // Shape *hitbox = Obj->hitbox;
-    // hitbox->update_center_x(hitbox, dx);
-    // hitbox->update_center_y(hitbox, dy);
-    
+
 }
 
 void Button_interact(Elements *const self_ele, Elements *const ele)
 {
     Button *Obj = ((Button *)(self_ele->pDerivedObj));
-    if(400 < mouse.x && 600 > mouse.x && 400 < mouse.y && 600 > mouse.y)
+    if(Obj->x < mouse.x && Obj->x+Obj->width > mouse.x && Obj->y < mouse.y && Obj->y+Obj->height > mouse.y)
     {
         Obj->state = 1;
-//      al_draw_scaled_bitmap(Obj->img,
-//      Obj->x, Obj->y, Obj->width, Obj->height,
-//      Obj->x, Obj->y, Obj->width*2, (Obj->height)*2, 0);
+
     }
     else
     {

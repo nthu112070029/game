@@ -55,13 +55,20 @@ Scene *New_GameScene(int label)
     return pObj;
 }
 
-//int timer = 0;
 int counter_of_monster = 0;
 void game_scene_update(Scene *const pGameSceneObj)
 {
-      
-    timer++;
+    if(window != 1)
+    {
+        pGameSceneObj->scene_end = true;
+    }
+    if(monster_killed>50)// kill 6 game win
+    {
+        window=3;
+        //pGameSceneObj->scene_end = true;
+    }
 
+    timer++;
     //create monster
     if (!(timer%600))
     {
@@ -112,18 +119,6 @@ void game_scene_update(Scene *const pGameSceneObj)
         if (ele->dele)
             _Remove_elements(pGameSceneObj, ele);
     }
-    if(window==2)
-    {
-        pGameSceneObj->scene_end = true;
-       
-       
-    }
-    if(monster_killed>50)// kill 6 game win
-    {
-        window=3;
-        pGameSceneObj->scene_end = true;
-    }
-
 }
 void game_scene_draw(Scene *const pGameSceneObj)
 {

@@ -7,6 +7,7 @@ const int HEIGHT = 700;
 int window = 0;
 int monster_killed=0;
 int timer = 0;
+int mouse_click_state = 0;
 ALLEGRO_EVENT_QUEUE *event_queue = NULL;
 ALLEGRO_EVENT event;
 ALLEGRO_TIMER *fps = NULL;

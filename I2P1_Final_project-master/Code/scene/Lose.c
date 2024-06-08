@@ -10,7 +10,7 @@ Scene *New_Lose(int label)
     // setting derived object member
     
     pDerivedObj->font = al_load_ttf_font("assets/font/pirulen.ttf", 12, 0);
-     pDerivedObj->background = al_load_bitmap("assets/image/lose.png");
+    pDerivedObj->background = al_load_bitmap("assets/image/lose.png");
     // Load sound
     pDerivedObj->song = al_load_sample("assets/sound/lose.mp3");
     //al_reserve_samples(20);
@@ -33,8 +33,9 @@ Scene *New_Lose(int label)
     return pObj;
 }
 void Lose_update(Scene *const pLoseObj)
-{
-   // update every element
+{   
+    if(window != 2) pLoseObj->scene_end = true;
+    // update every element
     ElementVec allEle = _Get_all_elements(pLoseObj);
     for (int i = 0; i < allEle.len; i++)
     {
