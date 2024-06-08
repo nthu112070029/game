@@ -61,16 +61,16 @@ void cannon_update(Elements *const ele)
    
     if (chara->state == stop)
     {
-        if (key_state[ALLEGRO_KEY_SPACE])
+        if (key_state[ALLEGRO_KEY_UP])
         {
             chara->state = atk;
         }
-        else if (key_state[ALLEGRO_KEY_A])
+        else if (key_state[ALLEGRO_KEY_LEFT])
         {
           
             chara->state = move;
         }
-        else if (key_state[ALLEGRO_KEY_D])
+        else if (key_state[ALLEGRO_KEY_RIGHT])
         {
             
             chara->state = move;
@@ -83,17 +83,17 @@ void cannon_update(Elements *const ele)
     }
     else if (chara->state == move)
     {
-        if (key_state[ALLEGRO_KEY_SPACE])
+        if (key_state[ALLEGRO_KEY_UP])
         {
             chara->state = atk;
         }
-        else if (key_state[ALLEGRO_KEY_A])
+        else if (key_state[ALLEGRO_KEY_LEFT])
         {
            
             _cannon_update_position(ele, -5, 0);
             chara->state = move;
         }
-        else if (key_state[ALLEGRO_KEY_D])
+        else if (key_state[ALLEGRO_KEY_RIGHT])
         {
             _cannon_update_position(ele, 5, 0);
             chara->state = move;
@@ -123,6 +123,7 @@ void cannon_update(Elements *const ele)
                                      -5);
            
             _Register_elements(scene, pro);
+            money_num-=5;
             chara->new_proj = true;
         }
           

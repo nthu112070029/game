@@ -8,7 +8,7 @@ Elements *New_Projectile(int label, int x, int y, int v)
     Projectile *pDerivedObj = (Projectile *)malloc(sizeof(Projectile));
     Elements *pObj = New_Elements(label);
     // setting derived object member
-    pDerivedObj->img = al_load_bitmap("assets/image/projectile.png");
+    pDerivedObj->img = al_load_bitmap("assets/image/cannonball.png");
     pDerivedObj->width = al_get_bitmap_width(pDerivedObj->img);
     pDerivedObj->height = al_get_bitmap_height(pDerivedObj->img);
     pDerivedObj->x = x;
