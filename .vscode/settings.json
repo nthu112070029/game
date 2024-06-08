@@ -29,6 +29,8 @@
         "streambuf": "c",
         "regex": "c",
         "*.inc": "c",
-        "cannon.h": "c"
+        "cannon.h": "c",
+        "monster.h": "c",
+        "thread": "c"
     }
 }

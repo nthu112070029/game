@@ -91,8 +91,7 @@ void Ball_interact(Elements *const self_ele, Elements *const ele)
 {
     Ball *Obj = ((Ball *)(self_ele->pDerivedObj));
     if (ele->label == camp_L)
-    {
-        
+    {        
         camp *camp1 = ((camp *)(ele->pDerivedObj));
         if(camp1->hitbox->overlap(camp1->hitbox, Obj->hitbox) && (money_num > 400)  && campID_CharacterHit == ele->id && !(tower_placed[campID_CharacterHit]))
         {

@@ -21,7 +21,7 @@ Elements *New_Monster(int label) // register at gamesence
     pDerivedObj->height = al_get_bitmap_height(pDerivedObj->img);
     pDerivedObj->x = 0;
     pDerivedObj->y = 100;
-    pDerivedObj->HP = timer/600;
+    pDerivedObj->HP = timer/1000;
     printf("HP %d\n", pDerivedObj->HP);
     pDerivedObj->hitbox = New_Rectangle(pDerivedObj->x,
                                         pDerivedObj->y,

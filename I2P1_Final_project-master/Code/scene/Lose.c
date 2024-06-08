@@ -12,7 +12,7 @@ Scene *New_Lose(int label)
     pDerivedObj->font = al_load_ttf_font("assets/font/pirulen.ttf", 12, 0);
     // Load sound
     pDerivedObj->song = al_load_sample("assets/sound/lose.mp3");
-    al_reserve_samples(20);
+    //al_reserve_samples(20);
     pDerivedObj->sample_instance = al_create_sample_instance(pDerivedObj->song);
     pDerivedObj->title_x = WIDTH / 2;
     pDerivedObj->title_y = HEIGHT / 2;
@@ -33,7 +33,36 @@ Scene *New_Lose(int label)
 }
 void Lose_update(Scene *const pLoseObj)
 {
-   
+   // update every element
+    ElementVec allEle = _Get_all_elements(pLoseObj);
+    for (int i = 0; i < allEle.len; i++)
+    {
+        allEle.arr[i]->Update(allEle.arr[i]);
+    }
+
+    // run interact for every element
+    for (int i = 0; i < allEle.len; i++)
+    {
+        Elements *ele = allEle.arr[i];
+        // run every interact object
+        for (int j = 0; j < ele->inter_len; j++)
+        {
+            int inter_label = ele->inter_obj[j];
+            ElementVec labelEle = _Get_label_elements(pLoseObj, inter_label);
+            //printf( "labal:%d\n", labelEle.len );
+            for (int i = 0; i < labelEle.len; i++)
+            {
+                ele->Interact(ele, labelEle.arr[i]);
+            }
+        }
+    }
+    // remove element
+    for (int i = 0; i < allEle.len; i++)
+    {
+        Elements *ele = allEle.arr[i];
+        if (ele->dele)
+            _Remove_elements(pLoseObj, ele);
+    }
 }
 void Lose_draw(Scene *const pLoseObj)
 {

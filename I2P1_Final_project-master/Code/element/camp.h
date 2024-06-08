@@ -10,7 +10,8 @@ typedef struct _camp
 {
     int x, y;          // the position of image
     int width, height; // the width and height of image
-    ALLEGRO_BITMAP *img;
+    int img_state;
+    ALLEGRO_BITMAP *img[3];
     Shape *hitbox;
 } camp;
 

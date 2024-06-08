@@ -1,7 +1,7 @@
 #include "camp.h"
 #include <stdio.h>
 #include "../shapes/Rectangle.h"
-ALLEGRO_BITMAP *bitmap_camp;
+ALLEGRO_BITMAP *bitmap_camp[3];
 
 /*
    [camp function]
@@ -11,17 +11,21 @@ Elements *New_camp(int label, int i, int j)
     camp *pDerivedObj = (camp *)malloc(sizeof(camp));
     Elements *pObj = New_Elements(label);
     // setting derived object member
-    pDerivedObj->img = bitmap_camp;
-    pDerivedObj->width = al_get_bitmap_width(pDerivedObj->img);
-    pDerivedObj->height = al_get_bitmap_height(pDerivedObj->img);
+    pDerivedObj->img[0] = bitmap_camp[0];
+    pDerivedObj->img[1] = bitmap_camp[1];
+    pDerivedObj->width = al_get_bitmap_width(pDerivedObj->img[1]);
+    pDerivedObj->height = al_get_bitmap_height(pDerivedObj->img[1]);
     //_camp_load_map(pDerivedObj); need to change
     pDerivedObj->x = i * pDerivedObj->width;
     pDerivedObj->y = j * pDerivedObj->height;
+    pDerivedObj->img_state = 1;
     pDerivedObj->hitbox = New_Rectangle(pDerivedObj->x,
                                         pDerivedObj->y,
                                         pDerivedObj->x + pDerivedObj->width,
                                         pDerivedObj->y + pDerivedObj->height);
 
+    // interact
+    pObj->inter_obj[pObj->inter_len++] = Tower_L;
     // setting derived object function
     pObj->pDerivedObj = pDerivedObj;
     pObj->Draw = camp_draw;
@@ -30,40 +34,29 @@ Elements *New_camp(int label, int i, int j)
     pObj->Destroy = camp_destory;
     return pObj;
 }
-/*
-void _camp_load_map(camp *const camp)
-{
-    FILE *data;
-    data = fopen("assets/map/camp.txt", "r");
-    for (int i = 0; i < 14; i++)
-    {
-        for (int j = 0; j < 20; j++)
-        {
-            fscanf(data, "%d", &camp->map_data[i][j]);
-        }
-    }
-    fclose(data);
-}
-*/
+
 void camp_update(Elements *const ele)
 {
     return;
 }
 void camp_interact(Elements *const self_ele, Elements *const ele)
 {
-    if (ele->label == Character_L)
+    camp * Obj = ((camp *)(self_ele->pDerivedObj));
+    if (ele->label == Tower_L)
     {
-        Character *chara = (Character *)(ele->pDerivedObj);
-        if (chara->x < 0 - chara->width / 2)
-            chara->x = 0 - chara->width / 2;
-        else if (chara->x > WIDTH - chara->width / 2)
-            chara->x = WIDTH - chara->width / 2;
+        Tower *tower = (Tower *)(ele->pDerivedObj);
+        if (tower->hitbox->overlap(tower->hitbox, Obj->hitbox))
+        {
+            Obj->img_state = 0;
+        } else {
+            //Obj->img_state = 1;
+        }
     }
 }
 void camp_draw(Elements *const ele)
 {
     camp *Obj = ((camp *)(ele->pDerivedObj));
-    al_draw_bitmap(Obj->img, Obj->x, Obj->y, 0);
+    al_draw_bitmap(Obj->img[Obj->img_state], Obj->x, Obj->y, 0);
 }
 void camp_destory(Elements *const ele)
 {
@@ -76,5 +69,6 @@ void camp_destory(Elements *const ele)
 
 void camp_load_bitmap()
 {
-    bitmap_camp = al_load_bitmap("assets/image/camp.png");
+    bitmap_camp[0] = al_load_bitmap("assets/image/transparent.png");
+    bitmap_camp[1] = al_load_bitmap("assets/image/camp.png");
 }

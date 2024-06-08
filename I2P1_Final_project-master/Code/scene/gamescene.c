@@ -78,8 +78,7 @@ void game_scene_update(Scene *const pGameSceneObj)
     if (!(timer%120))
     {
         if (counter_of_tower > 0)al_play_sample_instance(poft_Sound);
-    }
-    //printf("%d\n", timer);
+    };
 
     // update every element
     ElementVec allEle = _Get_all_elements(pGameSceneObj);

@@ -53,10 +53,10 @@ Elements *New_Tower(int label, int x, int y)
     pDerivedObj->height = al_get_bitmap_height(pDerivedObj->img);
     pDerivedObj->x = x-(pDerivedObj->width)/2;
     pDerivedObj->y = y-(pDerivedObj->height)/2;
-    pDerivedObj->hitbox = New_Rectangle(pDerivedObj->x,
-                                        pDerivedObj->y,
-                                        pDerivedObj->x + pDerivedObj->width,
-                                        pDerivedObj->y + pDerivedObj->height);
+    pDerivedObj->hitbox = New_Rectangle(pDerivedObj->x +1,
+                                        pDerivedObj->y +1,
+                                        pDerivedObj->x + pDerivedObj->width -1,
+                                        pDerivedObj->y + pDerivedObj->height -1);
 
     pObj->pDerivedObj = pDerivedObj;
     // setting derived object function

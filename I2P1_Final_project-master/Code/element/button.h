@@ -18,15 +18,12 @@
 
 typedef struct _Button
 {
-    int x, y, r;          
-    //int width, height; // the width and height of image
-    //bool dir;          // true: face to right, false: face to left
-    //int state;         // the state of Button
-    ALLEGRO_COLOR color;
+    int x, y;          
+    int width, height; // the width and height of image
+    ALLEGRO_BITMAP *img[3];
+    int state;         // the state of Button
     //ALGIF_ANIMATION* gif_status[3]; // gif for each state. 0: stop, 1: move, 2:attack
     //ALLEGRO_SAMPLE_INSTANCE *atk_Sound;
-    //int anime;      // counting the time of animation
-    //int anime_time; // indicate how long the animation
     //bool new_proj;
     Shape *hitbox; // the hitbox of object !!
     //ALLEGRO_BITMAP *img;
