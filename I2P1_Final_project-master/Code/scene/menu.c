@@ -7,6 +7,7 @@ Scene *New_Menu(int label)
 {
     Menu *pDerivedObj = (Menu *)malloc(sizeof(Menu));
     Scene *pObj = New_Scene(label);
+    pDerivedObj->background = al_load_bitmap("assets/image/menu.png");
     // setting derived object member
     pDerivedObj->font = al_load_ttf_font("assets/font/pirulen.ttf", 12, 0);
     // Load sound
@@ -46,13 +47,17 @@ void menu_update(Scene *const pMenuObj)
 void menu_draw(Scene *const pMenuObj)
 {
     Menu *Obj = ((Menu *)(pMenuObj->pDerivedObj));
-    al_draw_text(Obj->font, al_map_rgb(255, 255, 255), Obj->title_x, Obj->title_y, ALLEGRO_ALIGN_CENTRE, "Press 'Enter' to start");
-    al_draw_rectangle(Obj->title_x - 150, Obj->title_y - 30, Obj->title_x + 150, Obj->title_y + 30, al_map_rgb(255, 255, 255), 0);
+    al_draw_bitmap(Obj->background, 0, 0, 0);
+    //al_draw_text(Obj->font, al_map_rgb(255, 255, 255), Obj->title_x, Obj->title_y, ALLEGRO_ALIGN_CENTRE, "Press 'Enter' to start");
+    //al_draw_rectangle(Obj->title_x - 150, Obj->title_y - 30, Obj->title_x + 150, Obj->title_y + 30, al_map_rgb(255, 255, 255), 0);
     al_play_sample_instance(Obj->sample_instance);
+    
 }
 void menu_destroy(Scene *const pMenuObj)
 {
     Menu *Obj = ((Menu *)(pMenuObj->pDerivedObj));
+    ALLEGRO_BITMAP *background = Obj->background;
+    al_destroy_bitmap(background);
     al_destroy_font(Obj->font);
     al_destroy_sample(Obj->song);
     al_destroy_sample_instance(Obj->sample_instance);

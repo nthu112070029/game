@@ -10,6 +10,8 @@
 */
 typedef struct _Menu
 {
+    
+    ALLEGRO_BITMAP *background;
     ALLEGRO_FONT *font;
     ALLEGRO_SAMPLE *song;
     ALLEGRO_SAMPLE_INSTANCE *sample_instance;
