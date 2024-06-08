@@ -1,10 +1,6 @@
 #include "gamescene.h"
-//#include "../element/castle.h"
-// #include "../element/money_col.h"
-// #include "../element/camp.h"
-// #include "../element/monster.h"
-// 註冊在gamescene.h
 #include "../scene/sceneManager.h"
+// .h file註冊在gamescene.h
 
 void New_camp_use_map(Scene *const);
 

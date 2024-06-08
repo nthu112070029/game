@@ -137,7 +137,7 @@ void monster_interact(Elements *const self, Elements *const target) {
             if(Obj->HP < 0)
             {
                  self->dele = true;
-                money_num +=10;
+                money_num +=15;
                 monster_killed++;     
                 printf(" monster_killed %d ", monster_killed);
             }

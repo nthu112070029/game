@@ -1,6 +1,7 @@
 #ifndef Lose_H_INCLUDED
 #define Lose_H_INCLUDED
 #include "scene.h"
+#include "../element/button.h"
 #include <allegro5/allegro_audio.h>
 #include <allegro5/allegro_acodec.h>
 #include <allegro5/allegro_font.h>
@@ -8,6 +9,10 @@
 /*
    [Lose object]
 */
+typedef enum LostEleType
+{
+    Button_L,
+}LostEleType;
 typedef struct _Lose
 {
     ALLEGRO_FONT *font;

@@ -281,6 +281,7 @@ int main(int argc, char *argv[])
 
    al_set_new_display_flags(display_flags);
    screen = al_create_display(w, h);
+   printf("resize %d", 1);
    if (!screen) {
       fprintf(stderr, "Error setting %dx%d display mode\n", w, h);
       return 1;

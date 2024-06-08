@@ -28,6 +28,7 @@
         "sstream": "c",
         "streambuf": "c",
         "regex": "c",
-        "*.inc": "c"
+        "*.inc": "c",
+        "cannon.h": "c"
     }
 }

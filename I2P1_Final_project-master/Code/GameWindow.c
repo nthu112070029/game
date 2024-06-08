@@ -96,6 +96,7 @@ void game_init(Game *game)
     GAME_ASSERT(addon_init, "failed to initialize allegro addons.");
     // Create display
     game->display = al_create_display(WIDTH, HEIGHT);
+    //al_resize_display(game->display, 20000, 14000);
     GAME_ASSERT(game->display, "failed to create display.");
     // Create first scene
     create_scene(Menu_L);

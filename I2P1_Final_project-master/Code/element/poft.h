@@ -7,11 +7,11 @@
    [PofT
  object]
 */
-typedef struct _PofT
+typedef struct _PofT // projectile of tower
 {
     int x, y;          // the position of image
     int width, height; // the width and height of image
-    int vx, vy;             // the velocity of PofT
+    int vx, vy;        // the velocity of PofT
 
     ALLEGRO_BITMAP *img;
     Shape *hitbox; // the hitbox of object

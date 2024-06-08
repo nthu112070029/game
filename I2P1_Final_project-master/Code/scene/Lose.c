@@ -23,6 +23,8 @@ Scene *New_Lose(int label)
     // set the volume of instance
     al_set_sample_instance_gain(pDerivedObj->sample_instance, 0.1);
     pObj->pDerivedObj = pDerivedObj;
+    // register element
+    _Register_elements(pObj, New_Button(Button_L));
     // setting derived object function
     pObj->Update = Lose_update;
     pObj->Draw = Lose_draw;
@@ -40,6 +42,12 @@ void Lose_draw(Scene *const pLoseObj)
     al_draw_text(Obj->font, al_map_rgb(255, 255, 255), Obj->title_x, Obj->title_y, ALLEGRO_ALIGN_CENTRE, "YOU LOSE");
     al_draw_rectangle(Obj->title_x - 150, Obj->title_y - 30, Obj->title_x + 150, Obj->title_y + 30, al_map_rgb(255, 255, 255), 0);
     al_play_sample_instance(Obj->sample_instance);
+    ElementVec allEle = _Get_all_elements(pLoseObj);
+    for (int i = 0; i < allEle.len; i++)
+    {
+        Elements *ele = allEle.arr[i];
+        ele->Draw(ele);
+    }
 }
 void Lose_destroy(Scene *const pLoseObj)
 {

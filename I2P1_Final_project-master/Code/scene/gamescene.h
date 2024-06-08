@@ -33,7 +33,6 @@ typedef enum EleType
     Monster_L,
     Cannon_L,
     Character_L,
-
     
 }EleType;
 typedef struct _GameScene
