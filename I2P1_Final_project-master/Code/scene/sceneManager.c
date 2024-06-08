@@ -17,9 +17,10 @@ void create_scene(SceneType type)
         break;
      case Lose_L:
         scene = New_Lose(Lose_L);
+        break;
      case Win_L:
         scene = New_Win(Win_L);
-        break;    
+        break;
     default:
         break;
     }
