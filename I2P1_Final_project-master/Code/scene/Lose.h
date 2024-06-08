@@ -15,6 +15,7 @@ typedef enum LostEleType
 }LostEleType;
 typedef struct _Lose
 {
+     ALLEGRO_BITMAP *background;
     ALLEGRO_FONT *font;
     ALLEGRO_SAMPLE *song;
     ALLEGRO_SAMPLE_INSTANCE *sample_instance;
