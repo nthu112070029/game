@@ -15,6 +15,7 @@
 #include "../element/camp.h"
 #include "../element/monster.h"
 #include "../element/cannon.h"
+#include "../element/kill_num.h"
 /*
    [game scene object]
 */
@@ -33,6 +34,7 @@ typedef enum EleType
     Monster_L,
     Cannon_L,
     Character_L,
+    kill_num_L,
     
 }EleType;
 typedef struct _GameScene

@@ -28,8 +28,10 @@ void money_col_draw(Elements *const ele)
 {
     money_col *Obj = ((money_col *)(ele->pDerivedObj));
     char text[100];
+    
     sprintf(text, "Money: %d", money_num);
-    al_draw_text(Obj->font, al_map_rgb(0, 0, 0), 0, 670, 0, text);
+  
+    al_draw_text(Obj->font, al_map_rgb(0, 0, 0), 400, 200, ALLEGRO_ALIGN_CENTRE, text);
   
 }
 void money_col_destory(Elements *const ele)

@@ -45,6 +45,7 @@ Scene *New_GameScene(int label)
     //_Register_elements(pObj, New_camp(camp_L));
     _Register_elements(pObj, New_Monster(Monster_L));
     _Register_elements(pObj, New_cannon(Cannon_L));
+    _Register_elements(pObj, New_kill_num(kill_num_L));
     New_camp_use_map(pObj);
 
     
