@@ -137,7 +137,7 @@ void cannon_draw(Elements *const ele)
 {
     // with the state, draw corresponding image
     cannon *Obj = ((cannon *)(ele->pDerivedObj));
-   ALLEGRO_BITMAP *frame = algif_get_bitmap(Obj->gif_status[Obj->state], al_get_time());
+    ALLEGRO_BITMAP *frame = algif_get_bitmap(Obj->gif_status[Obj->state], al_get_time());
     if (frame)
     {
         al_draw_bitmap(frame, Obj->x, Obj->y,0);

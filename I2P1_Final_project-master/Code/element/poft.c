@@ -1,5 +1,6 @@
 #include "poft.h"
 #include "../shapes/Circle.h"
+#include "../scene/sceneManager.h"
 ALLEGRO_BITMAP *bitmap_poft;
 /*
    [PofT function]
@@ -35,6 +36,35 @@ void PofT_update(Elements *self)
 {
     PofT *Obj = ((PofT *)(self->pDerivedObj));
     _PofT_update_position(self, Obj->vx, Obj->vy);
+
+    // if (!(timer%60))
+    // {
+    //     int a = 5;
+    //     int b = 5;
+    //     //create projectile of tower
+    //     Elements *pro;
+    //     pro = New_PofT(PofT_L,
+    //                     Obj->x + ( Obj->width ) /2-5,
+    //                     Obj->y + ( Obj->height ) /2-5,
+    //                     a, b);
+    //     _Register_elements(scene, pro);
+    //     pro = New_PofT(PofT_L,
+    //                     Obj->x + ( Obj->width ) /2-5,
+    //                     Obj->y + ( Obj->height ) /2-5,
+    //                     a, -b);
+    //     _Register_elements(scene, pro);
+    //     pro = New_PofT(PofT_L,
+    //                     Obj->x + ( Obj->width ) /2-5,
+    //                     Obj->y + ( Obj->height ) /2-5,
+    //                     -a, b);
+    //     _Register_elements(scene, pro);
+    //     pro = New_PofT(PofT_L,
+    //                     Obj->x + ( Obj->width ) /2-5,
+    //                     Obj->y + ( Obj->height ) /2-5,
+    //                     -a, -b);
+    //     _Register_elements(scene, pro);
+    //     self->dele = true;
+    // }
 }
 void _PofT_update_position(Elements *self, int dx, int dy)
 {
@@ -81,10 +111,7 @@ void PofT_interact(Elements *self, Elements *tar)
 void PofT_draw(Elements *self)
 {
     PofT *Obj = ((PofT *)(self->pDerivedObj));
-    if (Obj->vx > 0) //need to fix
-        al_draw_bitmap(Obj->img, Obj->x, Obj->y, ALLEGRO_FLIP_HORIZONTAL);
-    else
-        al_draw_bitmap(Obj->img, Obj->x, Obj->y, 0);
+    al_draw_bitmap(Obj->img, Obj->x, Obj->y, 0); 
 }
 void PofT_destory(Elements *self)
 {

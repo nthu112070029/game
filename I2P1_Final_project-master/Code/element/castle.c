@@ -11,12 +11,12 @@ Elements *New_castle(int label)
     pDerivedObj->img = al_load_bitmap("assets/image/castle.png");
     pDerivedObj->width = al_get_bitmap_width(pDerivedObj->img);
     pDerivedObj->height = al_get_bitmap_height(pDerivedObj->img);
-    pDerivedObj->x = 900;
-    pDerivedObj->y = 50;
-    pDerivedObj->hitbox = New_Rectangle(pDerivedObj->x,
-                                        pDerivedObj->y,
-                                        pDerivedObj->x + pDerivedObj->width,
-                                        pDerivedObj->y + pDerivedObj->height);
+    pDerivedObj->x = 925 - pDerivedObj->width/2;
+    pDerivedObj->y = 150 - pDerivedObj->height;
+    pDerivedObj->hitbox = New_Rectangle(pDerivedObj->x +1,
+                                        pDerivedObj->y +1,
+                                        pDerivedObj->x + pDerivedObj->width -1,
+                                        pDerivedObj->y + pDerivedObj->height-1);
 
     // interact obj
     pObj->inter_obj[pObj->inter_len++] = Monster_L;

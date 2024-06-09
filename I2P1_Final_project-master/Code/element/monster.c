@@ -20,7 +20,7 @@ Elements *New_Monster(int label) // register at gamesence
     pDerivedObj->width =al_get_bitmap_width(pDerivedObj->img);
     pDerivedObj->height = al_get_bitmap_height(pDerivedObj->img);
     pDerivedObj->x = 0;
-    pDerivedObj->y = 100;
+    pDerivedObj->y = 150;
     pDerivedObj->HP = timer/1000;
     printf("HP %d\n", pDerivedObj->HP);
     pDerivedObj->hitbox = New_Rectangle(pDerivedObj->x,
@@ -53,28 +53,32 @@ void monster_update(Elements *const ele)
     }
     else if (chara->state == Run)
     {
-        if(chara->x <200 && chara->y==100)
+        if(chara->x <200 && chara->y==150)
         {
             _monster_update_position(ele, 1, 0);
 
         }
-        else if(chara->x ==200 && chara->y<400 )
+        else if(chara->x ==200 && chara->y<450 )
         {
             _monster_update_position(ele, 0, 1);
 
         }
-         else if(chara->x <650 && chara->y==400 )
+         else if(chara->x <650 && chara->y==450 )
         {
             _monster_update_position(ele, 1, 0);
 
         }
-         else if(chara->x ==650 && chara->y>100 )
+         else if(chara->x ==650 && chara->y>150 )
         {
             _monster_update_position(ele, 0, -1);
 
-        } else if(chara->x <1000 && chara->y==100 )
+        }else if(chara->x < 900 && chara->y==150 )
         {
             _monster_update_position(ele, 1, 0);
+
+        }else if(chara->x == 900)
+        {
+            _monster_update_position(ele, 0, -1);
 
         }
     }

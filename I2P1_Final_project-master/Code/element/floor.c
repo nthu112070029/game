@@ -27,7 +27,7 @@ Elements *New_Floor(int label)
 void _Floor_load_map(Floor *const floor)
 {
     FILE *data;
-    data = fopen("assets/map/gamescene_map.txt", "r");
+    data = fopen("assets/map/map.txt", "r");
     for (int i = 0; i < 14; i++)
     {
         for (int j = 0; j < 20; j++)
@@ -59,7 +59,7 @@ void Floor_draw(Elements *const ele)
     {
         for (int j = 0; j < 20; j++)
         {
-            if (Obj->map_data[i][j])
+            if (Obj->map_data[i][j] == 1)
             {
                 al_draw_bitmap(Obj->img, Obj->x + j * Obj->width, Obj->y + i * Obj->height, 0);
             }

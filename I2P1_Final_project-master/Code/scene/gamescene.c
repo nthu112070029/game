@@ -158,7 +158,7 @@ void New_camp_use_map(Scene *const scene)
     int map_data[14][20];
     FILE *data;
 
-    data = fopen("assets/map/camp.txt", "r");
+    data = fopen("assets/map/map.txt", "r");
     for (int i = 0; i < 14; i++)
     {
         for (int j = 0; j < 20; j++)
@@ -173,9 +173,9 @@ void New_camp_use_map(Scene *const scene)
     {
         for (int j = 0; j < 20; j++)
         {
-            if (map_data[i][j])
+            if (map_data[i][j] == 7)
             {
-              cam = New_camp(camp_L,j,i);
+              cam = New_camp(camp_L, j, i);
               _Register_elements(scene, cam);
             }
         }

@@ -11,8 +11,8 @@ Elements *New_Projectile(int label, int x, int y, int v)
     pDerivedObj->img = al_load_bitmap("assets/image/cannonball.png");
     pDerivedObj->width = al_get_bitmap_width(pDerivedObj->img);
     pDerivedObj->height = al_get_bitmap_height(pDerivedObj->img);
-    pDerivedObj->x = x;
-    pDerivedObj->y = y;
+    pDerivedObj->x = x - pDerivedObj->width/2;
+    pDerivedObj->y = y - pDerivedObj->height/2;
     pDerivedObj->v = v;
     pDerivedObj->hitbox = New_Circle(pDerivedObj->x + pDerivedObj->width / 2,
                                      pDerivedObj->y + pDerivedObj->height / 2,

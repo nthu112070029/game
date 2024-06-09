@@ -7,7 +7,7 @@
 #include <stdio.h>
 #include <stdbool.h>
 ALLEGRO_BITMAP *bitmap_tower ; 
-int index_of_projit = 0;
+
 /*
    [Tower function]
 */
@@ -72,86 +72,32 @@ void Tower_update(Elements *self)
     // use the idea of finite state machine to deal with different state
     Tower *chara = ((Tower *)(self->pDerivedObj));
     if (!(timer%120))
-    {           
+    {
+        int a = 5;
+        int b = 5;
         //create projectile of tower
         Elements *pro;
         pro = New_PofT(PofT_L,
                         chara->x + ( chara->width ) /2-5,
                         chara->y + ( chara->height ) /2-5,
-                        5, 5);
+                        a, b);
         _Register_elements(scene, pro);
         pro = New_PofT(PofT_L,
                         chara->x + ( chara->width ) /2-5,
                         chara->y + ( chara->height ) /2-5,
-                        5, -5);
+                        a, -b);
         _Register_elements(scene, pro);
         pro = New_PofT(PofT_L,
                         chara->x + ( chara->width ) /2-5,
                         chara->y + ( chara->height ) /2-5,
-                        -5, 5);
+                        -a, b);
         _Register_elements(scene, pro);
         pro = New_PofT(PofT_L,
                         chara->x + ( chara->width ) /2-5,
                         chara->y + ( chara->height ) /2-5,
-                        -5, -5);
+                        -a, -b);
         _Register_elements(scene, pro);
-        //chara->new_proj = true; useless
     }
-
-    /*
-    if (chara->state == T_STOP)
-    {
-        if (key_state[ALLEGRO_KEY_SPACE])
-        {
-            chara->state = T_ATK;
-        }
-        else if (key_state[ALLEGRO_KEY_A])
-        {
-            chara->dir = false;
-            chara->state = T_MOVE;
-        }
-        else if (key_state[ALLEGRO_KEY_D])
-        {
-            chara->dir = true;
-            chara->state = T_MOVE;
-        }
-        else
-        {
-            chara->state = T_STOP;
-        }
-    }
-    else if (chara->state == T_MOVE)
-    {
-        if (key_state[ALLEGRO_KEY_SPACE])
-        {
-            chara->state = T_ATK;
-        }*/
-        
-        /*
-        else if (key_state[ALLEGRO_KEY_A])
-        {
-            chara->dir = false;
-            _Tower_update_position(self, -5, 0);
-            chara->state = T_MOVE;
-        }
-        else if (key_state[ALLEGRO_KEY_D])
-        {
-            chara->dir = true;
-            _Tower_update_position(self, 5, 0);
-            chara->state = T_MOVE;
-        }
-        if (chara->gif_status[chara->state]->done)
-            chara->state = T_STOP;
-    }
-    else if (chara->state == T_ATK)
-    {
-        if (chara->gif_status[chara->state]->done)
-        {
-            chara->state = T_STOP;
-            chara->new_proj = false;
-        }
-    }
-    */
 }
 void Tower_draw(Elements *self)
 {
