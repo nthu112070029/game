@@ -29,9 +29,9 @@ void kill_num_draw(Elements *const ele)
     kill_num *Obj = ((kill_num *)(ele->pDerivedObj));
     char text[100];
     
-    sprintf(text, "kill_num: %d", money_num);
+    sprintf(text, "kill_num: %d", monster_killed);
   
-    al_draw_text(Obj->font, al_map_rgb(0, 0, 0), 400, 150, ALLEGRO_ALIGN_CENTRE, text);
+    al_draw_text(Obj->font, al_map_rgb(0, 0, 0), 425, 150, ALLEGRO_ALIGN_CENTRE, text);
   
 }
 void kill_num_destory(Elements *const ele)
