@@ -143,7 +143,7 @@ void monster_interact(Elements *const self, Elements *const target) {
                  self->dele = true;
                 money_num +=15;
                 monster_killed++;     
-                printf(" monster_killed %d ", monster_killed);
+               
             }
         }
     }
@@ -154,7 +154,7 @@ void monster_interact(Elements *const self, Elements *const target) {
         {
             self->dele = true;   
             monster_killed++;         
-            printf(" monster_killed %d ", monster_killed);
+          
         }
     }
 }
