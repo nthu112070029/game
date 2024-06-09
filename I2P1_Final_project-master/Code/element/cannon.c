@@ -22,7 +22,7 @@ Elements *New_cannon(int label)
         pDerivedObj->gif_status[i] = algif_new_gif(buffer, -1);
     }
     // load effective sound
-    ALLEGRO_SAMPLE *sample = al_load_sample("assets/sound/atk_sound.wav");
+    ALLEGRO_SAMPLE *sample = al_load_sample("assets/sound/cannon.mp3");
     pDerivedObj->atk_Sound = al_create_sample_instance(sample);
     al_set_sample_instance_playmode(pDerivedObj->atk_Sound, ALLEGRO_PLAYMODE_ONCE);
     al_attach_sample_instance_to_mixer(pDerivedObj->atk_Sound, al_get_default_mixer());
@@ -142,9 +142,10 @@ void cannon_draw(Elements *const ele)
     {
         al_draw_bitmap(frame, Obj->x, Obj->y,0);
     }
-    if (Obj->state == atk && Obj->gif_status[Obj->state]->display_index == 2)
+    if (Obj->state == atk )//&& Obj->gif_status[Obj->state]->display_index == 2
     {
         al_play_sample_instance(Obj->atk_Sound);
+       
     }
 }
 void cannon_destory(Elements *const ele)
