@@ -29,4 +29,5 @@ extern ALLEGRO_TIMER *fps;
 extern bool debug_mode;
 extern int money_num;
 extern bool tower_placed[1000];
+extern int chara_Helath_Point;
 #endif

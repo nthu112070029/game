@@ -31,6 +31,8 @@
         "*.inc": "c",
         "cannon.h": "c",
         "monster.h": "c",
-        "thread": "c"
+        "thread": "c",
+        "kill_num.h": "c",
+        "chara_hp.h": "c"
     }
 }

@@ -16,6 +16,7 @@
 #include "../element/monster.h"
 #include "../element/cannon.h"
 #include "../element/kill_num.h"
+#include "../element/chara_HP.h"
 /*
    [game scene object]
 */
@@ -30,11 +31,12 @@ typedef enum EleType
     Tower_L,
     Castle_L,
     money_col_L,
-    Ball_L,
     Monster_L,
     Cannon_L,
     Character_L,
     kill_num_L,
+    chara_HP_L,
+    Ball_L, //ball should be last
     
 }EleType;
 typedef struct _GameScene

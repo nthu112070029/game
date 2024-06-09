@@ -23,6 +23,7 @@ Elements *New_PofT(int label, int x, int y, int vx, int vy)
     // setting the interact object
     pObj->inter_obj[pObj->inter_len++] = Monster_L;
     pObj->inter_obj[pObj->inter_len++] = Floor_L;
+    pObj->inter_obj[pObj->inter_len++] = Character_L;
     // setting derived object function
     pObj->pDerivedObj = pDerivedObj;
     pObj->Update = PofT_update;
@@ -107,6 +108,16 @@ void PofT_interact(Elements *self, Elements *tar)
             self->dele = true;
         }
     }
+    else if (tar->label == Character_L)
+    {
+        Character *chara = ((Character *)(tar->pDerivedObj));
+        if (chara->hitbox->overlap(chara->hitbox, Obj->hitbox))
+        {
+            self->dele = true;
+            chara_Helath_Point--;
+            if(chara_Helath_Point < 1) window = 2;
+        }
+    }
 }
 void PofT_draw(Elements *self)
 {
@@ -128,4 +139,5 @@ void poft_load_bitmap_sound()
     poft_Sound = al_create_sample_instance(al_load_sample("assets/sound/laser_sfx.ogg"));//taking_damage_sfx.ogg
     al_set_sample_instance_playmode(poft_Sound, ALLEGRO_PLAYMODE_ONCE);
     al_attach_sample_instance_to_mixer(poft_Sound, al_get_default_mixer());
+    al_set_sample_instance_gain(poft_Sound, 0.1);
 }

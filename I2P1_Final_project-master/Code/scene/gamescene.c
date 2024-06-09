@@ -9,9 +9,13 @@ void New_camp_use_map(Scene *const);
 */
 Scene *New_GameScene(int label)
 {
+    // variable initialize
     timer = 0;
     money_num = 1000;
+    chara_Helath_Point = 10;
+    counter_of_tower = 0;
     memset(tower_placed, 0, 1000);
+
     camp_load_bitmap();
     monster_load_bitmap();
     tower_load_bitmap();
@@ -46,6 +50,7 @@ Scene *New_GameScene(int label)
     _Register_elements(pObj, New_Monster(Monster_L));
     _Register_elements(pObj, New_cannon(Cannon_L));
     _Register_elements(pObj, New_kill_num(kill_num_L));
+    _Register_elements(pObj, New_chara_HP(chara_HP_L));
     New_camp_use_map(pObj);
 
     

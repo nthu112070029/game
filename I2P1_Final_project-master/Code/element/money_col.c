@@ -31,7 +31,7 @@ void money_col_draw(Elements *const ele)
     
     sprintf(text, "Money: %d", money_num);
   
-    al_draw_text(Obj->font, al_map_rgb(0, 0, 0), 425, 200, ALLEGRO_ALIGN_CENTRE, text);
+    al_draw_text(Obj->font, al_map_rgb(0, 0, 0), 450, 200, ALLEGRO_ALIGN_CENTRE, text);
   
 }
 void money_col_destory(Elements *const ele)

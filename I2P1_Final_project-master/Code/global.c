@@ -17,3 +17,4 @@ Point mouse;
 bool debug_mode = true;
 int money_num = 1000;
 bool tower_placed[1000];
+int chara_Helath_Point = 10;
