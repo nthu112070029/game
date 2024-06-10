@@ -1,5 +1,6 @@
 #include "button.h"
 #include "../scene/lose.h"
+#include "../scene/win.h"
 #include <stdio.h>
 #include "../shapes/Rectangle.h"
 extern int mouse_click_state;
@@ -18,8 +19,13 @@ Elements *New_Button(int label)
     pDerivedObj->state = 0;
     pDerivedObj->width = al_get_bitmap_width(pDerivedObj->img[0]);
     pDerivedObj->height = al_get_bitmap_height(pDerivedObj->img[0]);
-    pDerivedObj->x = 730 - pDerivedObj->width/2;
-    pDerivedObj->y = 550 - pDerivedObj->height/2;
+
+    int init_x, init_y;
+    if(window == 2) init_x = 730, init_y = 550;
+    else init_x = 500, init_y = 625;
+    
+    pDerivedObj->x = init_x - pDerivedObj->width/2;
+    pDerivedObj->y = init_y - pDerivedObj->height/2;
 
     // 初始化碰撞体
     pDerivedObj->hitbox = New_Rectangle(pDerivedObj->x,
@@ -28,7 +34,8 @@ Elements *New_Button(int label)
                                         pDerivedObj->y + pDerivedObj->height);
 
     //interact objects
-    pObj->inter_obj[pObj->inter_len++] = Button_L;
+    pObj->inter_obj[pObj->inter_len++] = Win_Button_L;
+    pObj->inter_obj[pObj->inter_len++] = Lose_Button_L;
 
     // setting derived object function
     pObj->pDerivedObj = pDerivedObj;

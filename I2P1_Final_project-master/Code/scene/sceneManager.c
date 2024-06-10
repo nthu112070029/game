@@ -6,7 +6,6 @@
 Scene *scene = NULL;
 void create_scene(SceneType type)
 {
-    
     switch (type)
     {
     case Menu_L:

@@ -14,7 +14,7 @@ Elements *New_cannon(int label)
     // setting derived object member
     // load cannon images
     
-   char state_string[3][10] = {"stop", "move", "attack"};
+    char state_string[3][10] = {"stop", "move", "attack"};
     for (int i = 0; i < 3; i++)
     {
         char buffer[50];
@@ -32,7 +32,7 @@ Elements *New_cannon(int label)
     // initial the geometric information of cannon
 
   
- pDerivedObj->width = pDerivedObj->gif_status[0]->width;
+    pDerivedObj->width = pDerivedObj->gif_status[0]->width;
     pDerivedObj->height = pDerivedObj->gif_status[0]->height;
     pDerivedObj->x = 700;
     pDerivedObj->y = HEIGHT - pDerivedObj->height ;
@@ -123,6 +123,7 @@ void cannon_update(Elements *const ele)
                                      -5);
            
             _Register_elements(scene, pro);
+            printf("udlfsdhfl");
             money_num-=5;
             chara->new_proj = true;
         }

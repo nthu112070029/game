@@ -1,9 +1,8 @@
 #include "gamescene.h"
 #include "../scene/sceneManager.h"
 // .h file註冊在gamescene.h
-
 void New_camp_use_map(Scene *const);
-
+void gamescene_load_sound();
 /*
    [GameScene function]
 */
@@ -14,8 +13,8 @@ Scene *New_GameScene(int label)
     money_num = 1000;
     chara_Helath_Point = 10;
     counter_of_tower = 0;
+    monster_killed = 0;
     memset(tower_placed, 0, 1000);
-
     camp_load_bitmap();
     monster_load_bitmap();
     tower_load_bitmap();
@@ -25,20 +24,7 @@ Scene *New_GameScene(int label)
     Scene *pObj = New_Scene(label);
     // setting derived object member
     pDerivedObj->background = al_load_bitmap("assets/image/stage.png");
-    
-
-    //sound
-    pDerivedObj->song = al_load_sample("assets/sound/game_scene.mp3");
-    al_reserve_samples(20);
-    pDerivedObj->sample_instance = al_create_sample_instance(pDerivedObj->song);
-    // Loop the song until the display closes
-    al_set_sample_instance_playmode(pDerivedObj->sample_instance, ALLEGRO_PLAYMODE_LOOP);
-    al_restore_default_mixer();
-    al_attach_sample_instance_to_mixer(pDerivedObj->sample_instance, al_get_default_mixer());
-    // set the volume of instance
-    al_set_sample_instance_gain(pDerivedObj->sample_instance, 0.1);
     pObj->pDerivedObj = pDerivedObj;
-    //pObj->pDerivedObj = pDerivedObj;
     
     // register element
     _Register_elements(pObj, New_Floor(Floor_L));
@@ -52,8 +38,6 @@ Scene *New_GameScene(int label)
     _Register_elements(pObj, New_kill_num(kill_num_L));
     _Register_elements(pObj, New_chara_HP(chara_HP_L));
     New_camp_use_map(pObj);
-
-    
 
 
     // setting derived object function
@@ -132,9 +116,9 @@ void game_scene_draw(Scene *const pGameSceneObj)
 {
     al_clear_to_color(al_map_rgb(0, 0, 0));
     GameScene *gs = ((GameScene *)(pGameSceneObj->pDerivedObj));
-
-    al_play_sample_instance(gs->sample_instance);
-
+    printf("t%d\n", timer);
+    al_play_sample_instance(sample_instance);
+    printf("t%d\n", timer);
     al_draw_bitmap(gs->background, 0, 0, 0);
     ElementVec allEle = _Get_all_elements(pGameSceneObj);
     for (int i = 0; i < allEle.len; i++)
@@ -154,7 +138,7 @@ void game_scene_destroy(Scene *const pGameSceneObj)
         Elements *ele = allEle.arr[i];
         ele->Destroy(ele);
     }
-    al_destroy_sample_instance(Obj->sample_instance);
+    al_destroy_sample_instance(sample_instance);
     free(Obj);
     free(pGameSceneObj);
 }
@@ -186,4 +170,18 @@ void New_camp_use_map(Scene *const scene)
             }
         }
     }
+}
+
+void gamescene_load_sound()
+{
+    // sound
+    //al_reserve_samples(20);
+    printf("shdfui");
+    sample_instance = al_create_sample_instance(al_load_sample("assets/sound/game_scene.mp3"));
+    // Loop the song until the display closes
+    al_set_sample_instance_playmode(sample_instance, ALLEGRO_PLAYMODE_LOOP);
+    al_restore_default_mixer();
+    al_attach_sample_instance_to_mixer(sample_instance, al_get_default_mixer());
+    // set the volume of instance
+    al_set_sample_instance_gain(sample_instance, 0.5);;
 }

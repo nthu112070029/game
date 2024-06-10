@@ -33,6 +33,8 @@
         "monster.h": "c",
         "thread": "c",
         "kill_num.h": "c",
-        "chara_hp.h": "c"
+        "chara_hp.h": "c",
+        "allegro_ttf.h": "c",
+        "rectangle.h": "c"
     }
 }

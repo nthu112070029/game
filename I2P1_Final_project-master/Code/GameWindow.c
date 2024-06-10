@@ -12,6 +12,7 @@
 #include <allegro5/allegro_ttf.h>
 // include scene and following component
 #include "scene/sceneManager.h"
+#include "scene/gamescene.h"
 
 
 Game *New_Game()
@@ -117,6 +118,8 @@ void game_init(Game *game)
     // initialize the icon on the display
     ALLEGRO_BITMAP *icon = al_load_bitmap("assets/image/icon.jpg");
     al_set_display_icon(game->display, icon);
+    // load music
+    gamescene_load_sound();
 }
 bool game_update(Game *game)
 {

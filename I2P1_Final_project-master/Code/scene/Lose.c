@@ -22,10 +22,10 @@ Scene *New_Lose(int label)
     al_restore_default_mixer();
     al_attach_sample_instance_to_mixer(pDerivedObj->sample_instance, al_get_default_mixer());
     // set the volume of instance
-    al_set_sample_instance_gain(pDerivedObj->sample_instance, 0.1);
+    al_set_sample_instance_gain(pDerivedObj->sample_instance, 0.5);
     pObj->pDerivedObj = pDerivedObj;
     // register element
-    _Register_elements(pObj, New_Button(Button_L));
+    _Register_elements(pObj, New_Button(Lose_Button_L));
     // setting derived object function
     pObj->Update = Lose_update;
     pObj->Draw = Lose_draw;

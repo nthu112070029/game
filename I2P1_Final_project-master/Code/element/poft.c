@@ -139,5 +139,5 @@ void poft_load_bitmap_sound()
     poft_Sound = al_create_sample_instance(al_load_sample("assets/sound/laser_sfx.ogg"));//taking_damage_sfx.ogg
     al_set_sample_instance_playmode(poft_Sound, ALLEGRO_PLAYMODE_ONCE);
     al_attach_sample_instance_to_mixer(poft_Sound, al_get_default_mixer());
-    al_set_sample_instance_gain(poft_Sound, 0.1);
+    al_set_sample_instance_gain(poft_Sound, 0.5);
 }

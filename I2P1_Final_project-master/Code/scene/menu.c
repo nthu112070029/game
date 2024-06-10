@@ -12,6 +12,7 @@ Scene *New_Menu(int label)
     pDerivedObj->font = al_load_ttf_font("assets/font/pirulen.ttf", 12, 0);
     // Load sound
     pDerivedObj->song = al_load_sample("assets/sound/menu.mp3");
+    printf("111111");
     al_reserve_samples(20);
     pDerivedObj->sample_instance = al_create_sample_instance(pDerivedObj->song);
     pDerivedObj->title_x = WIDTH / 2;
@@ -21,7 +22,7 @@ Scene *New_Menu(int label)
     al_restore_default_mixer();
     al_attach_sample_instance_to_mixer(pDerivedObj->sample_instance, al_get_default_mixer());
     // set the volume of instance
-    al_set_sample_instance_gain(pDerivedObj->sample_instance, 0.1);
+    al_set_sample_instance_gain(pDerivedObj->sample_instance, 0.5);
     pObj->pDerivedObj = pDerivedObj;
 
 

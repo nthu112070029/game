@@ -11,7 +11,7 @@
 */
 typedef enum LostEleType
 {
-    Button_L,
+    Lose_Button_L,
 }LostEleType;
 typedef struct _Lose
 {

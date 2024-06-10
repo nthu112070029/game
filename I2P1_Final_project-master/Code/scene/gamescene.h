@@ -43,12 +43,12 @@ typedef struct _GameScene
 {
     ALLEGRO_BITMAP *background;
     ALLEGRO_SAMPLE *song;
-    ALLEGRO_SAMPLE_INSTANCE *sample_instance;
-    
+
 } GameScene;
 Scene *New_GameScene(int label);
 void game_scene_update(Scene *const pGameSceneObj);
 void game_scene_draw(Scene *const pGameSceneObj);
 void game_scene_destroy(Scene *const pGameSceneObj);
-
+void gamescene_load_sound();
+ALLEGRO_SAMPLE_INSTANCE *sample_instance;
 #endif
