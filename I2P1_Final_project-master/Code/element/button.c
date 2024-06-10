@@ -3,7 +3,6 @@
 #include "../scene/win.h"
 #include <stdio.h>
 #include "../shapes/Rectangle.h"
-extern int mouse_click_state;
 
 /*
    [Button function]

@@ -48,6 +48,7 @@ Elements *New_cannon(int label)
     pDerivedObj->state = stop;
     pDerivedObj->new_proj = false;
     pObj->pDerivedObj = pDerivedObj;
+    
 
    
     // setting derived object function
@@ -57,19 +58,24 @@ Elements *New_cannon(int label)
     pObj->Destroy = cannon_destory;
     return pObj;
 }
+int kEY_UP_state = 0;
 void cannon_update(Elements *const ele)
 {
     // use the idea of finite state machine to deal with different state
     cannon *chara = ((cannon *)(ele->pDerivedObj));
-   
-    if (chara->state = stop)
+    
+    if (!key_state[ALLEGRO_KEY_UP])
     {
-        if (key_state[ALLEGRO_KEY_UP])
+        chara->new_proj = false;
+    }
+
+    if (chara->state == stop)
+    {
+        if (key_state[ALLEGRO_KEY_UP] && chara->new_proj == false)
         {
             chara->state = atk;
-            mouse_click_state
-        }
-        else if (key_state[ALLEGRO_KEY_LEFT])
+            chara->new_proj = true;
+        }else if (key_state[ALLEGRO_KEY_LEFT])
         {
           
             chara->state = move;
@@ -79,7 +85,6 @@ void cannon_update(Elements *const ele)
             
             chara->state = move;
         }
-     
         else
         {
             chara->state = stop;
@@ -90,8 +95,10 @@ void cannon_update(Elements *const ele)
         if (key_state[ALLEGRO_KEY_UP])
         {
             chara->state = atk;
+        }else{
+            chara->new_proj = false;
         }
-        else if (key_state[ALLEGRO_KEY_LEFT])
+        if (key_state[ALLEGRO_KEY_LEFT])
         {
            
             _cannon_update_position(ele, -5, 0);
@@ -102,7 +109,6 @@ void cannon_update(Elements *const ele)
             _cannon_update_position(ele, 5, 0);
             chara->state = move;
         }
-       
         else
         {
             chara->state = stop;
@@ -110,7 +116,7 @@ void cannon_update(Elements *const ele)
        /*if (chara->gif_status[chara->state]->done)
             chara->state = stop;*/ 
     }
-    else if (chara->state == atk && chara->new_proj == false)
+    else if (chara->state == atk )
     {
        
         // if (chara->gif_status[chara->state]->done)
@@ -131,7 +137,6 @@ void cannon_update(Elements *const ele)
             printf("cannon");
             money_num-=5;
             chara->state = move;
-            chara->new_proj = true;
         // }
           
 
@@ -149,7 +154,7 @@ void cannon_draw(Elements *const ele)
     // {
         al_draw_bitmap(Obj->img, Obj->x, Obj->y, 0);
     // }
-    if (Obj->state == atk && Obj->new_proj == false)//&& Obj->gif_status[Obj->state]->display_index == 2
+    if (Obj->state == atk)//&& Obj->gif_status[Obj->state]->display_index == 2
     {
         al_play_sample_instance(Obj->atk_Sound);
     }
