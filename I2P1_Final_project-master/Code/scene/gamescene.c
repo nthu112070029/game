@@ -15,6 +15,8 @@ Scene *New_GameScene(int label)
     counter_of_tower = 0;
     monster_killed = 0;
     memset(tower_placed, 0, 1000);
+    al_play_sample_instance(sample_instance);
+    printf("kgvvskfnkwefn");
     camp_load_bitmap();
     monster_load_bitmap();
     tower_load_bitmap();
@@ -116,9 +118,6 @@ void game_scene_draw(Scene *const pGameSceneObj)
 {
     al_clear_to_color(al_map_rgb(0, 0, 0));
     GameScene *gs = ((GameScene *)(pGameSceneObj->pDerivedObj));
-    printf("t%d\n", timer);
-    al_play_sample_instance(sample_instance);
-    printf("t%d\n", timer);
     al_draw_bitmap(gs->background, 0, 0, 0);
     ElementVec allEle = _Get_all_elements(pGameSceneObj);
     for (int i = 0; i < allEle.len; i++)
@@ -132,13 +131,13 @@ void game_scene_destroy(Scene *const pGameSceneObj)
     GameScene *Obj = ((GameScene *)(pGameSceneObj->pDerivedObj));
     ALLEGRO_BITMAP *background = Obj->background;
     al_destroy_bitmap(background);
+    al_set_sample_instance_playing(sample_instance, false);
     ElementVec allEle = _Get_all_elements(pGameSceneObj);
     for (int i = 0; i < allEle.len; i++)
     {
         Elements *ele = allEle.arr[i];
         ele->Destroy(ele);
     }
-    al_destroy_sample_instance(sample_instance);
     free(Obj);
     free(pGameSceneObj);
 }
