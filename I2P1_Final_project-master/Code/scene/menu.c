@@ -32,14 +32,16 @@ Scene *New_Menu(int label)
     pObj->Destroy = menu_destroy;
     return pObj;
 }
+
+ALLEGRO_BITMAP * tutorial_img;
+
 void menu_update(Scene *const pMenuObj)
 {
+    // tutorial_img = al_load_bitmap("assets/image/intro.png");
     if (key_state[ALLEGRO_KEY_ENTER])
     {
         pMenuObj->scene_end = true;
-      
-        window = 1;
-        
+        window = 1;  
     }
    
     return;
