@@ -56,7 +56,7 @@ void Character_update(Elements *const ele)
     Character *chara = ((Character *)(ele->pDerivedObj));
     if (chara->state == STOP)
     {
-        if (key_state[ALLEGRO_KEY_SPACE])
+        if (0) //key_state[ALLEGRO_KEY_SPACE])
         {
             chara->state = ATK;
         }
@@ -87,7 +87,7 @@ void Character_update(Elements *const ele)
     }
     else if (chara->state == MOVE)
     {
-        if (key_state[ALLEGRO_KEY_SPACE])
+        if (0)//key_state[ALLEGRO_KEY_SPACE])
         {
             chara->state = ATK;
         }
@@ -156,7 +156,8 @@ void Character_draw(Elements *const ele)
     if (frame)
     {
         al_draw_bitmap(frame, chara->x, chara->y, ((chara->dir) ? ALLEGRO_FLIP_HORIZONTAL : 0));
-    }
+    }  
+
     if (chara->state == ATK && chara->gif_status[chara->state]->display_index == 2)
     {
         al_play_sample_instance(chara->atk_Sound);
@@ -189,12 +190,19 @@ int campID_CharacterHit = -1;
 
 void Character_interact(Elements *const self_ele, Elements *const target_ele) {
     Character *Obj = ((Character *)(self_ele->pDerivedObj));
+    
     if (target_ele->label == camp_L)
     {
         camp *camp1 = ((camp *)(target_ele->pDerivedObj));
-        if(camp1->hitbox->overlap(camp1->hitbox, Obj->hitbox))
+        Shape * dect_hitbox = New_Rectangle(Obj->x + Obj->width/2,
+                                            Obj->y + Obj->height/2,
+                                            Obj->x + Obj->width/2,
+                                            Obj->y + Obj->height/2);
+        printf("%d\n", Obj->x + Obj->width/2);
+        if(camp1->hitbox->overlap(camp1->hitbox, dect_hitbox))
         {
            campID_CharacterHit = target_ele->id;
+           printf("%d\n",campID_CharacterHit);
         }
         else
         {

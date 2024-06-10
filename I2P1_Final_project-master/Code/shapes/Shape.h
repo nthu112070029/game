@@ -28,7 +28,7 @@ struct _Shape
 	void *pDerivedObj;
 	fptrOverlap overlap;
 	fptrCenterX center_x;
-	fptrCenterY center_y;
+	fptrCenterY center_y; 
 	fptrUpdateCenterX update_center_x;
 	fptrUpdateCenterY update_center_y;
 	fptrGetType getType;

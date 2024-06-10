@@ -33,9 +33,9 @@ typedef enum EleType
     money_col_L,
     Monster_L,
     Cannon_L,
-    Character_L,
     kill_num_L,
     chara_HP_L,
+    Character_L,
     Ball_L, //ball should be last
     
 }EleType;
