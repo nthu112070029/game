@@ -40,6 +40,16 @@ void Projectile_update(Elements *const ele)
 void _Projectile_update_position(Elements *const self, int dx, int dy)
 {
     Projectile *Obj = ((Projectile *)(self->pDerivedObj));
+    if(Obj->x < 0 || Obj->x > WIDTH)
+    {
+        self->dele = true;
+        return;
+    }
+    if(Obj->y < 0 || (Obj->y > HEIGHT))
+    {
+        self->dele = true;
+        return;
+    }
     Obj->x += dx;
     Obj->y += dy;
     Shape *hitbox = Obj->hitbox;
@@ -49,14 +59,7 @@ void _Projectile_update_position(Elements *const self, int dx, int dy)
 void Projectile_interact(Elements *const self_ele, Elements *const ele)
 {
     Projectile *Obj = ((Projectile *)(self_ele->pDerivedObj));
-    if (ele->label == Floor_L)
-    {
-        if (Obj->x < 0 - Obj->width)
-            self_ele->dele = true;
-        else if (Obj->x > WIDTH + Obj->width)
-            self_ele->dele = true;
-    }
-    else if (ele->label == Tree_L)
+    if (ele->label == Tree_L)
     {
         Tree *tree = ((Tree *)(ele->pDerivedObj));
         if (tree->hitbox->overlap(tree->hitbox, Obj->hitbox))

@@ -15,8 +15,7 @@ Scene *New_GameScene(int label)
     counter_of_tower = 0;
     monster_killed = 0;
     memset(tower_placed, 0, 1000);
-    al_play_sample_instance(sample_instance);
-    printf("kgvvskfnkwefn");
+    al_set_sample_instance_playing(sample_instance, true);
     camp_load_bitmap();
     monster_load_bitmap();
     tower_load_bitmap();
@@ -97,7 +96,6 @@ void game_scene_update(Scene *const pGameSceneObj)
         {
             int inter_label = ele->inter_obj[j];
             ElementVec labelEle = _Get_label_elements(pGameSceneObj, inter_label);
-            //printf( "labal:%d\n", labelEle.len );
             for (int i = 0; i < labelEle.len; i++)
             {
                 ele->Interact(ele, labelEle.arr[i]);
@@ -175,7 +173,6 @@ void gamescene_load_sound()
 {
     // sound
     //al_reserve_samples(20);
-    printf("shdfui");
     sample_instance = al_create_sample_instance(al_load_sample("assets/sound/game_scene.mp3"));
     // Loop the song until the display closes
     al_set_sample_instance_playmode(sample_instance, ALLEGRO_PLAYMODE_LOOP);

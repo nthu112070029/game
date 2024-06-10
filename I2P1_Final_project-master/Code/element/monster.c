@@ -103,16 +103,16 @@ void monster_destory(Elements *const ele)
 void _monster_update_position(Elements *const ele, int dx, int dy)
 {
     Monster *monster = ((Monster *)(ele->pDerivedObj));
-    if((monster->x + dx) < 0 || (monster->x + monster->width + dx) > WIDTH)
-    {
-        ele->dele = true;
-        return;
-    }
-    if((monster->y + dy) < 0 || (monster->y + monster->height + dy) > HEIGHT)
-    {
-        ele->dele = true;
-        return;
-    }
+    // if(monster->x  < 0 || monster->x > WIDTH)
+    // {
+    //     ele->dele = true;
+    //     return;
+    // }
+    // if(monster->y < 0 || monster->y > HEIGHT)
+    // {
+    //     ele->dele = true;
+    //     return;
+    // }
     monster->x += dx;
     monster->y += dy;
     Shape *hitbox = monster->hitbox;
@@ -137,7 +137,6 @@ void monster_interact(Elements *const self, Elements *const target) {
         if (poft->hitbox->overlap(poft->hitbox, Obj->hitbox))
         {
             Obj->HP--;
-            printf("HP %d\n", Obj->HP);
             if(Obj->HP < 0)
             {
                  self->dele = true;

@@ -19,15 +19,16 @@ typedef enum cannonType
 typedef struct _cannon
 {
    int x, y;          
-    int width, height; // the width and height of image
-    bool dir;          // true: face to right, false: face to left
-    int state;         // the state of character
-    ALGIF_ANIMATION* gif_status[3]; // gif for each state. 0: stop, 1: move, 2:attack
-    ALLEGRO_SAMPLE_INSTANCE *atk_Sound;
-    int anime;      // counting the time of animation
-    int anime_time; // indicate how long the animation
-    bool new_proj;
-    Shape *hitbox; // the hitbox of object
+   int width, height; // the width and height of image
+   bool dir;          // true: face to right, false: face to left
+   int state;         // the state of character
+   //ALGIF_ANIMATION* gif_status[3]; // gif for each state. 0: stop, 1: move, 2:attack
+   ALLEGRO_BITMAP *img;
+   ALLEGRO_SAMPLE_INSTANCE *atk_Sound;
+   int anime;      // counting the time of animation
+   int anime_time; // indicate how long the animation
+   bool new_proj;
+   Shape *hitbox; // the hitbox of object
 } cannon;
 Elements *New_cannon(int label);
 void _cannon_update_position(Elements *const self, int dx, int dy);

@@ -13,14 +13,15 @@ Elements *New_cannon(int label)
     Elements *pObj = New_Elements(label);
     // setting derived object member
     // load cannon images
-    
-    char state_string[3][10] = {"stop", "move", "attack"};
-    for (int i = 0; i < 3; i++)
-    {
-        char buffer[50];
-        sprintf(buffer, "assets/image/ca_%s.gif", state_string[i]);
-        pDerivedObj->gif_status[i] = algif_new_gif(buffer, -1);
-    }
+    pDerivedObj->img = al_load_bitmap("assets/image/castle.png");
+    // char state_string[3][10] = {"stop", "move", "attack"};
+    // for (int i = 0; i < 3; i++)
+    // {
+    //     char buffer[50];
+    //     sprintf(buffer, "assets/image/ca_%s.gif", state_string[i]);
+    //     pDerivedObj->gif_status[i] = algif_new_gif(buffer, -1);
+    // }
+
     // load effective sound
     ALLEGRO_SAMPLE *sample = al_load_sample("assets/sound/cannon.mp3");
     pDerivedObj->atk_Sound = al_create_sample_instance(sample);
@@ -32,8 +33,10 @@ Elements *New_cannon(int label)
     // initial the geometric information of cannon
 
   
-    pDerivedObj->width = pDerivedObj->gif_status[0]->width;
-    pDerivedObj->height = pDerivedObj->gif_status[0]->height;
+    // pDerivedObj->width = pDerivedObj->gif_status[0]->width;
+    // pDerivedObj->height = pDerivedObj->gif_status[0]->height;
+    pDerivedObj->width = al_get_bitmap_width(pDerivedObj->img);;
+    pDerivedObj->height = al_get_bitmap_height(pDerivedObj->img);
     pDerivedObj->x = 700;
     pDerivedObj->y = HEIGHT - pDerivedObj->height ;
     pDerivedObj->hitbox = New_Rectangle(pDerivedObj->x,
@@ -59,11 +62,12 @@ void cannon_update(Elements *const ele)
     // use the idea of finite state machine to deal with different state
     cannon *chara = ((cannon *)(ele->pDerivedObj));
    
-    if (chara->state == stop)
+    if (chara->state = stop)
     {
         if (key_state[ALLEGRO_KEY_UP])
         {
             chara->state = atk;
+            mouse_click_state
         }
         else if (key_state[ALLEGRO_KEY_LEFT])
         {
@@ -106,15 +110,16 @@ void cannon_update(Elements *const ele)
        /*if (chara->gif_status[chara->state]->done)
             chara->state = stop;*/ 
     }
-    else if (chara->state == atk)
+    else if (chara->state == atk && chara->new_proj == false)
     {
        
-           if (chara->gif_status[chara->state]->done) {
-            chara->state = stop;
-            chara->new_proj = false;
-        }
-        if ( chara->new_proj == false)
-        {
+        // if (chara->gif_status[chara->state]->done)
+        // {
+        //     chara->state = stop;
+        //     chara->new_proj = false;
+        // }
+        // if ( chara->new_proj == false)
+        // {
             Elements *pro;
             
                 pro = New_Projectile(Projectile_L,
@@ -123,10 +128,11 @@ void cannon_update(Elements *const ele)
                                      -5);
            
             _Register_elements(scene, pro);
-            printf("udlfsdhfl");
+            printf("cannon");
             money_num-=5;
+            chara->state = move;
             chara->new_proj = true;
-        }
+        // }
           
 
             
@@ -138,23 +144,23 @@ void cannon_draw(Elements *const ele)
 {
     // with the state, draw corresponding image
     cannon *Obj = ((cannon *)(ele->pDerivedObj));
-    ALLEGRO_BITMAP *frame = algif_get_bitmap(Obj->gif_status[Obj->state], al_get_time());
-    if (frame)
-    {
-        al_draw_bitmap(frame, Obj->x, Obj->y,0);
-    }
-    if (Obj->state == atk )//&& Obj->gif_status[Obj->state]->display_index == 2
+    //ALLEGRO_BITMAP *frame = algif_get_bitmap(Obj->gif_status[Obj->state], al_get_time());
+    // if (frame)
+    // {
+        al_draw_bitmap(Obj->img, Obj->x, Obj->y, 0);
+    // }
+    if (Obj->state == atk && Obj->new_proj == false)//&& Obj->gif_status[Obj->state]->display_index == 2
     {
         al_play_sample_instance(Obj->atk_Sound);
-       
     }
 }
 void cannon_destory(Elements *const ele)
 {
     cannon *Obj = ((cannon *)(ele->pDerivedObj));
     al_destroy_sample_instance(Obj->atk_Sound);
-    for (int i = 0; i < 3; i++)
-        algif_destroy_animation(Obj->gif_status[i]);
+    al_destroy_bitmap(Obj->img);
+    // for (int i = 0; i < 3; i++)
+    //     algif_destroy_animation(Obj->gif_status[i]);
     free(Obj->hitbox);
     free(Obj);
     free(ele);
