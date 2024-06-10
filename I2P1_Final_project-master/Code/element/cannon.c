@@ -50,7 +50,7 @@ void cannon_update(Elements *const ele)
     // use the idea of finite state machine to deal with different state
     cannon *chara = ((cannon *)(ele->pDerivedObj));
     
-    if (!key_state[ALLEGRO_KEY_UP] && al_get_sample_instance_playing(chara->atk_Sound) == false)
+    if (!key_state[ALLEGRO_KEY_UP] && al_get_sample_instance_playing(chara->atk_Sound) == false && money_num >= 200)
     {
         chara->new_proj = false;
     }
@@ -80,9 +80,9 @@ void cannon_update(Elements *const ele)
     {
         if (key_state[ALLEGRO_KEY_UP])
         {
-            chara->state = atk;
+            //chara->state = atk;
         }else{
-            chara->new_proj = false;
+            //hara->new_proj = false;
         }
         if (key_state[ALLEGRO_KEY_LEFT] && chara->x > 0)
         {
