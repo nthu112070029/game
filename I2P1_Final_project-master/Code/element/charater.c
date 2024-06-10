@@ -198,11 +198,9 @@ void Character_interact(Elements *const self_ele, Elements *const target_ele) {
                                             Obj->y + Obj->height/2,
                                             Obj->x + Obj->width/2,
                                             Obj->y + Obj->height/2);
-        printf("%d\n", Obj->x + Obj->width/2);
         if(camp1->hitbox->overlap(camp1->hitbox, dect_hitbox))
         {
            campID_CharacterHit = target_ele->id;
-           printf("%d\n",campID_CharacterHit);
         }
         else
         {

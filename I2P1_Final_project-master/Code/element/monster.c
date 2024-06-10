@@ -5,6 +5,7 @@ ALLEGRO_BITMAP *bitmap_monster;
 /*
    [monster function]
 */
+
 Elements *New_Monster(int label) // register at gamesence
 {
     Monster *pDerivedObj = (Monster *)malloc(sizeof(Monster));
@@ -22,7 +23,7 @@ Elements *New_Monster(int label) // register at gamesence
     pDerivedObj->x = 0;
     pDerivedObj->y = 150;
     pDerivedObj->HP = timer/1000;
-    printf("HP %d\n", pDerivedObj->HP);
+    pDerivedObj->init_HP = timer/1000;
     pDerivedObj->hitbox = New_Rectangle(pDerivedObj->x,
                                         pDerivedObj->y,
                                         pDerivedObj->x + pDerivedObj->width,
@@ -89,7 +90,10 @@ void monster_draw(Elements *const ele)
 {
     // with the state, draw corresponding image
     Monster *Obj = ((Monster *)(ele->pDerivedObj));
-   al_draw_bitmap(Obj->img, Obj->x, Obj->y, 0);
+   //al_draw_bitmap(Obj->img, Obj->x, Obj->y, 0);
+   double p_color = ((Obj->HP+1)/(Obj->init_HP+1));
+   if(Obj->init_HP>1) al_draw_tinted_bitmap(Obj->img, al_map_rgba_f(1*p_color, 0.5*p_color, 0.5*p_color, 1*p_color), Obj->x, Obj->y, 0);
+   else al_draw_tinted_bitmap(Obj->img, al_map_rgba_f(1*p_color, 1*p_color, 1*p_color, 1*p_color), Obj->x, Obj->y, 0);
 }
 void monster_destory(Elements *const ele)
 {
@@ -139,9 +143,12 @@ void monster_interact(Elements *const self, Elements *const target) {
             Obj->HP--;
             if(Obj->HP < 0)
             {
-                 self->dele = true;
-                money_num +=10;
-                monster_killed++;     
+                if(!self->dele) {
+                    monster_killed++;
+                    money_num +=10;
+                }
+                self->dele = true;
+
                
             }
         }
@@ -151,9 +158,8 @@ void monster_interact(Elements *const self, Elements *const target) {
         Projectile *poft = ((Projectile *)(target->pDerivedObj));
         if (poft->hitbox->overlap(poft->hitbox, Obj->hitbox))
         {
-            self->dele = true;   
-            monster_killed++;         
-          
+            if(!self->dele) monster_killed++; 
+            self->dele = true;
         }
     }
 }
