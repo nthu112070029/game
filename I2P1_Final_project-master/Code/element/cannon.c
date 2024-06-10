@@ -100,7 +100,7 @@ void cannon_update(Elements *const ele)
             chara->state = stop;
         }
     }
-    else if (chara->state == atk)
+    else if (chara->state == atk && money_num >= 200)
     {
         Elements *pro;
         
@@ -111,7 +111,7 @@ void cannon_update(Elements *const ele)
         
         _Register_elements(scene, pro);
         printf("cannon");
-        money_num-=5;
+        money_num-=200;
         chara->state = move;
     }
    

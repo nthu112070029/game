@@ -30,8 +30,9 @@ void kill_num_draw(Elements *const ele)
     char text[100];
     
     sprintf(text, "kill_num: %d", monster_killed);
-  
+    if(window == 1)
     al_draw_text(Obj->font, al_map_rgb(0, 0, 0), 450, 150, ALLEGRO_ALIGN_CENTRE, text);
+    else al_draw_text(Obj->font, al_map_rgb(0, 0, 0), 725, 100, ALLEGRO_ALIGN_CENTRE, text);
   
 }
 void kill_num_destory(Elements *const ele)

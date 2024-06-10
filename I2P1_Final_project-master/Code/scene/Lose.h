@@ -2,6 +2,7 @@
 #define Lose_H_INCLUDED
 #include "scene.h"
 #include "../element/button.h"
+#include "../element/kill_num.h"
 #include <allegro5/allegro_audio.h>
 #include <allegro5/allegro_acodec.h>
 #include <allegro5/allegro_font.h>
@@ -12,6 +13,7 @@
 typedef enum LostEleType
 {
     Lose_Button_L,
+    Lose_Kill_num_L
 }LostEleType;
 typedef struct _Lose
 {

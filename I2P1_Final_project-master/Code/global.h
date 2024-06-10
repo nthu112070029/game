@@ -28,6 +28,8 @@ extern ALLEGRO_EVENT event;
 extern ALLEGRO_TIMER *fps;
 extern bool debug_mode;
 extern int money_num;
+extern long long goal;
 extern bool tower_placed[1000];
 extern int chara_Helath_Point;
+extern char *Mode_text;
 #endif

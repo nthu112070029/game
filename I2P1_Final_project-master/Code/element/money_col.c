@@ -9,7 +9,7 @@ Elements *New_money_col(int label)
     Elements *pObj = New_Elements(label);
     // setting derived object member
   
-   pDerivedObj->font = al_load_ttf_font("assets/font/pirulen.ttf", 30, 0);
+    pDerivedObj->font = al_load_ttf_font("assets/font/pirulen.ttf", 30, 0);
     pDerivedObj->money=0;
     // setting derived object function
     pObj->pDerivedObj = pDerivedObj;
@@ -32,6 +32,7 @@ void money_col_draw(Elements *const ele)
     sprintf(text, "Money: %d", money_num);
   
     al_draw_text(Obj->font, al_map_rgb(0, 0, 0), 450, 200, ALLEGRO_ALIGN_CENTRE, text);
+    al_draw_text(Obj->font, al_map_rgb(0, 0, 0), 475, 650, ALLEGRO_ALIGN_CENTRE, Mode_text);
   
 }
 void money_col_destory(Elements *const ele)

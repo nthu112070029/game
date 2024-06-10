@@ -26,6 +26,7 @@ Scene *New_Lose(int label)
     pObj->pDerivedObj = pDerivedObj;
     // register element
     _Register_elements(pObj, New_Button(Lose_Button_L));
+    _Register_elements(pObj, New_kill_num(Lose_Kill_num_L));
     // setting derived object function
     pObj->Update = Lose_update;
     pObj->Draw = Lose_draw;

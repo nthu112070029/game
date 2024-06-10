@@ -7,6 +7,7 @@
 /*
    [Character function]
 */
+
 Elements *New_Character(int label)
 {
     Character *pDerivedObj = (Character *)malloc(sizeof(Character));
@@ -56,9 +57,15 @@ void Character_update(Elements *const ele)
     Character *chara = ((Character *)(ele->pDerivedObj));
     if (chara->state == STOP)
     {
-        if (0) //key_state[ALLEGRO_KEY_SPACE])
+        if (key_state[ALLEGRO_KEY_I])
         {
-            chara->state = ATK;
+            goal = 999999999;
+            Mode_text = "Infinite Mode On";
+        }
+        else if (key_state[ALLEGRO_KEY_SPACE])
+        {
+            goal = 49;
+            Mode_text = "Infinite Mode Off";
         }
         else if (key_state[ALLEGRO_KEY_A])
         {
