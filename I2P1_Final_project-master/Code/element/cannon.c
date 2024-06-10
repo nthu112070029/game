@@ -13,7 +13,7 @@ Elements *New_cannon(int label)
     Elements *pObj = New_Elements(label);
     // setting derived object member
     // load cannon images
-    pDerivedObj->img = al_load_bitmap("assets/image/castle.png");
+    pDerivedObj->img = al_load_bitmap("assets/image/cannon.png");
 
     // load effective sound
     ALLEGRO_SAMPLE *sample = al_load_sample("assets/sound/cannon.mp3");
@@ -84,13 +84,13 @@ void cannon_update(Elements *const ele)
         }else{
             chara->new_proj = false;
         }
-        if (key_state[ALLEGRO_KEY_LEFT])
+        if (key_state[ALLEGRO_KEY_LEFT] && chara->x > 0)
         {
            
             _cannon_update_position(ele, -5, 0);
             chara->state = move;
         }
-        else if (key_state[ALLEGRO_KEY_RIGHT])
+        else if (key_state[ALLEGRO_KEY_RIGHT] && chara->x+chara->width < WIDTH)
         {
             _cannon_update_position(ele, 5, 0);
             chara->state = move;
