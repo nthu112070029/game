@@ -3,6 +3,7 @@
 /*
    [Menu function]
 */
+ALLEGRO_BITMAP * tutorial_img;
 Scene *New_Menu(int label)
 {
     Menu *pDerivedObj = (Menu *)malloc(sizeof(Menu));
@@ -24,7 +25,7 @@ Scene *New_Menu(int label)
     al_set_sample_instance_gain(pDerivedObj->sample_instance, 0.5);
     pObj->pDerivedObj = pDerivedObj;
 
-
+    tutorial_img = al_load_bitmap("assets/image/intro.png");
 
     // setting derived object function
     pObj->Update = menu_update;
@@ -33,23 +34,30 @@ Scene *New_Menu(int label)
     return pObj;
 }
 
-ALLEGRO_BITMAP * tutorial_img;
 
+bool tutorial = 0;
 void menu_update(Scene *const pMenuObj)
 {
-    // tutorial_img = al_load_bitmap("assets/image/intro.png");
-    if (key_state[ALLEGRO_KEY_ENTER])
+    
+    if (key_state[ALLEGRO_KEY_ENTER] && tutorial == 0)
     {
+        tutorial = 1;
         pMenuObj->scene_end = true;
         window = 1;  
     }
+    if (key_state[ALLEGRO_KEY_T] && tutorial == 0)
+    {
+        tutorial = 1;
+    }
+    if (!key_state[ALLEGRO_KEY_T]) tutorial = 0;
    
     return;
 }
 void menu_draw(Scene *const pMenuObj)
 {
     Menu *Obj = ((Menu *)(pMenuObj->pDerivedObj));
-    al_draw_bitmap(Obj->background, 0, 0, 0);
+    if(tutorial) al_draw_bitmap(tutorial_img, 0, 0, 0);
+    else al_draw_bitmap(Obj->background, 0, 0, 0);
     //al_draw_text(Obj->font, al_map_rgb(255, 255, 255), Obj->title_x, Obj->title_y, ALLEGRO_ALIGN_CENTRE, "Press 'Enter' to start");
     //al_draw_rectangle(Obj->title_x - 150, Obj->title_y - 30, Obj->title_x + 150, Obj->title_y + 30, al_map_rgb(255, 255, 255), 0);
     al_play_sample_instance(Obj->sample_instance);
