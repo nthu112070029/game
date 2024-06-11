@@ -145,7 +145,7 @@ void monster_interact(Elements *const self, Elements *const target) {
             {
                 if(!self->dele) {
                     monster_killed++;
-                    money_num +=10;
+                    money_num +=10*(1+timer/3600);
                 }
                 self->dele = true;
 

@@ -55,7 +55,7 @@ void game_scene_update(Scene *const pGameSceneObj)
     {
         pGameSceneObj->scene_end = true;
     }
-    if(monster_killed>goal)// kill 6 game win
+    if(monster_killed>goal)// kill x monster，game win
     {
         window=3;
         //pGameSceneObj->scene_end = true;
