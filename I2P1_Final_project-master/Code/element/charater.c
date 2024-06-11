@@ -66,6 +66,14 @@ void Character_update(Elements *const ele)
         {
             goal = 49;
             Mode_text = "Infinite Mode Off";
+        }else if (key_state[ALLEGRO_KEY_2])
+        {
+            goal = 19;
+            Mode_text = "Kill Goal: 20";
+        }else if (key_state[ALLEGRO_KEY_1])
+        {
+            goal = 9;
+            Mode_text = "Kill Goal: 10";
         }
         else if (key_state[ALLEGRO_KEY_A])
         {
