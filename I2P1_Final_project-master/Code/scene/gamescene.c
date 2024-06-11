@@ -55,7 +55,11 @@ void game_scene_update(Scene *const pGameSceneObj)
     {
         pGameSceneObj->scene_end = true;
     }
+<<<<<<< Updated upstream
     if(monster_killed>goal)// kill x monster，game win
+=======
+    if(monster_killed>24)// kill 6 game win
+>>>>>>> Stashed changes
     {
         window=3;
         //pGameSceneObj->scene_end = true;

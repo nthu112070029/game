@@ -16,7 +16,7 @@ bool mouse_state[ALLEGRO_MOUSE_MAX_EXTRA_AXES] = {false};
 Point mouse;
 bool debug_mode = true;
 int money_num = 1000;
-long long goal = 49;
+long long goal = 24;
 bool tower_placed[1000];
 int chara_Helath_Point = 10;
 char *Mode_text = "Infinite Mode Off";
